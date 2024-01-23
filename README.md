@@ -21,7 +21,7 @@ It may be a package from BiocManger specifically. In that event:
 
 If you cannot find the package, it is likely a github repository. Please check soderling-lab repositories, the package will likely be in there.
 
-`devtools::install_github("user/{githubrepo}")`
+`devtools::install_github("{github-user}/{githubrepo}")`
 
 You can load these packages using `library(PKG)`
 
@@ -30,7 +30,10 @@ Given the Tandem Mass Taggged (TMT) Mass Spectrometry data from the Proteomics C
 
 Please run '0_prepData_transform.py' from 'analysis/2_SWIP-TMT' or 'analysis/3_Clustering' with your target dataset, and prep the data to start at '1_generate-network.R', '1_MSstatsTMT-analysis.R'
 
-This will transform the data to a long format so 
+This will transform the data to a long format so the fractions and mixtures are structured vertically rather than horizontally.
+
+**In the event you are starting from the PSMs, please run 0_PD-data-preprocess.R** Please refer to the source code [SWIP-Proteomics by T. Wesley & S. H. Soderling](https://github.com/soderling-lab/SwipProteomics?tab=readme-ov-file)
+
 
 ### MSstatsTMT
 ### Assess differential protein abundance for intrafraction comparisons between WT and MUT
@@ -74,4 +77,3 @@ Navigate into ~/geneontologies and run:
     - GSEApy is an inbuilt wrapper for Enrichr (allows list of human/mouse genes to compare against numerous biological libraries- pathways, diseases, genesets). This analysis is also provided as a benchmark using inbuilt python/enrichment analysis.
         - documentation: https://gseapy.readthedocs.io/en/latest/introduction.html
         - output: ~/enrichments_GSEA/{YOURGENE_KO}_{YOUR_POI}_GSEApy.csv
-
