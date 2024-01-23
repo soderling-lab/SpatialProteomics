@@ -41,9 +41,15 @@ This will transform the data to a long format so the fractions and mixtures are 
 Navigate into and run: 
 - analysis/2_SWIP-TMT/1_MSstatsTMT-analysis.R
     - output: adjacency matrix, neten adjacency matrix, TMT protein data
+     - You can only run this if you have the PSMs. Reach out the proteomics core in the event you need this. Some examples are under ~/PSM
+
 - analysis/2_SWIP-TMT/2_Swip-TMT-normalization.R
+ - Start with this to get the entire pipeline below for protein clustering
 
 ### Protein clustering into modules using Leiden Algorithm
+
+Please ensure you have run ~/analysis/2_SWIP-TMT/2_Swip-TMT-normalization.R
+
 Navigate into analysis/3_Clustering and run:
 - analysis/3_Clustering/1_generate-network.R
 - analysis/3_Clustering/2_leidenalg-clustering.py
