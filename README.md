@@ -4,16 +4,19 @@ Taken from source [SWIP-Proteomics by T. Wesley & S. H. Soderling](https://githu
 
 Please refer to the SWIP-proteomics github for the foundation of this program. Below are the specific details on how to get variation analysis for each protein individually, and then protein modules.
 
-Refer to the following paper for methods and further conceptual understanding of the pipeline. [Genetic disruption of WASHC4 drives endo-lysosomal dysfunction and cognitive-movement impairments in mice and humans](https://elifesciences.org/articles/61590) 
+Refer to the following paper for methods and further conceptuals of the pipeline. [Genetic disruption of WASHC4 drives endo-lysosomal dysfunction and cognitive-movement impairments in mice and humans](https://elifesciences.org/articles/61590) 
 
 
-**In the event you run into environment/packaging issues:**
+## Environment
+### R:
+This project uses `renv` for dependency management. To set up the R environment for this project:
+1. Open R with the current repo (SpatialProteomics)
+    - if you are in bash, type `R` to enter R console
+2. Run `install.packages("renv")`
+3. Run `renv::restore()`. This restores the R environment from renv.lock in 'analysis'.
 
-<u> R: <u>
 If you are missing a package:
-
 `install.packages("PKG")`
-
 
 It may be a package from BiocManger specifically. In that event:
 `BiocManager::install("AnnotationDbi")`
@@ -24,6 +27,23 @@ If you cannot find the package, it is likely a github repository. Please check s
 `devtools::install_github("{github-user}/{githubrepo}")`
 
 You can load these packages using `library(PKG)`
+
+### Python
+
+For running 'analysis/3_Clustering/2_leidenalg-clustering.py' you will need a specific python environment. 
+
+At the home directory of this repository 'SpatialProteomics', please run:
+
+`conda env create -f analysis/environment.yml` 
+
+and activate:
+`conda activate spatial_env`
+
+In the event you run into missing packages, please install with `conda install {pkg}` or `pip install {pkg}`
+
+**NOTE: For the singular python file in the module analysis pipeline. You must activate the environment, and then run it from the command line.**
+
+`python analysis/3_Clustering/2_leidenalg-clustering.py`
 
 ## Necessary Pre-processing
 Given the Tandem Mass Taggged (TMT) Mass Spectrometry data from the Proteomics Core, please use the Normalized data sheet moving further.
