@@ -19,14 +19,17 @@ FDR_alpha = 0.05 # FDR = Benjamini Hochberg FDR
 ## ---- prepare the working R environment
 
 root <- "~/Documents/SoderlingLab/SpatialProteomics"
+setwd("../..")
 renv::load(root)
+gene_name <- "Vps35" # change
 
 #library(SwipProteomics)
 devtools::load_all(root)
 
 # load data in root/data from 0_PD-data-process
 data(pd_psm)
-data(swip_gene_map)
+
+data(Vps35_gene_map) ## YOU HAVE TO CHANGE THIS TO YOUR GENE! {}_gene_map
 data(pd_annotation)
 data(mut_vs_control) # 'Mutant-Control' comparison
 data(msstats_contrasts) # 'intra-BioFraction' comparisons
@@ -173,7 +176,6 @@ message(
 # combine intra-BioFraction and Mutant-Control results
 msstats_results <- rbind(results1,results2)
 
-
 ## ---- format msstats_prot for downstream analysis
 
 # clean-up the data
@@ -248,7 +250,7 @@ lapply(results_list, summarize, sum(FDR<0.05)) %>%
 ## ---- save results
 
 # save results as excel document
-myfile <- file.path(root,"tables","SWIP-MSstatsTMT-Results.xlsx")
+myfile <- file.path(root,"tables",paste0(gene_name,"-MSstatsTMT-Results.xlsx"))
 write_excel(results_list,myfile)
 message("saved: ", myfile)
 
