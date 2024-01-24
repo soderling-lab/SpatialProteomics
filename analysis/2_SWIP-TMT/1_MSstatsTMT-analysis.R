@@ -18,7 +18,7 @@ FDR_alpha = 0.05 # FDR = Benjamini Hochberg FDR
 
 ## ---- prepare the working R environment
 
-root <- "~/Documents/SwipProteomics-master"
+root <- "~/Documents/SoderlingLab/SpatialProteomics"
 renv::load(root)
 
 #library(SwipProteomics)
