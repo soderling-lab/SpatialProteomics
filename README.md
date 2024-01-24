@@ -46,14 +46,14 @@ In the event you run into missing packages, please install with `conda install {
 `python analysis/3_Clustering/2_leidenalg-clustering.py`
 
 ## Necessary Pre-processing
-Given the Tandem Mass Taggged (TMT) Mass Spectrometry data from the Proteomics Core, please use the Normalized data sheet moving further.
+Given the Tandem Mass Taggged (TMT) Mass Spectrometry data from the Proteomics Core, please use the Normalized data sheet (labeled in xlsx file) moving further.
 
-Please run '0_prepData_transform.py' from 'analysis/2_SWIP-TMT' or 'analysis/3_Clustering' with your target dataset, and prep the data to start at '1_generate-network.R', '1_MSstatsTMT-analysis.R'
+Please run '0_prepData_transform.py' from 'analysis/2_SWIP-TMT' or 'analysis/3_Clustering' with your target dataset, to prep the data to start at '1_generate-network.R', '1_MSstatsTMT-analysis.R'
 
 This will transform the data to a long format so the fractions and mixtures are structured vertically rather than horizontally.
 
-**In the event you are starting from the PSMs, please run 0_PD-data-preprocess.R** Please refer to the source code [SWIP-Proteomics by T. Wesley & S. H. Soderling](https://github.com/soderling-lab/SwipProteomics?tab=readme-ov-file)
-
+**In the event you are starting from the PSMs, please run 0_PD-data-preprocess.R** 
+Please refer to the source code [SWIP-Proteomics by T. Wesley & S. H. Soderling](https://github.com/soderling-lab/SwipProteomics?tab=readme-ov-file) if you need to start here. 
 
 ### MSstatsTMT
 ### Assess differential protein abundance for intrafraction comparisons between WT and MUT
@@ -64,7 +64,8 @@ Navigate into and run:
      - You can only run this if you have the PSMs. Reach out the proteomics core in the event you need this. Some examples are under ~/PSM
 
 - analysis/2_SWIP-TMT/2_Swip-TMT-normalization.R
- - Start with this to get the entire pipeline below for protein clustering
+    - Start with this to get the entire pipeline below for protein clustering
+    - saved files will be printed in console
 
 ### Protein clustering into modules using Leiden Algorithm
 
@@ -86,19 +87,26 @@ Navigate into analysis/4_Module-Analysis and run:
 You have found the clustered modules in your dataset! Please navigate into ~/tables, the protein modules are saved under '{YOUR_GENE}_TMT-Module-Results.xlsx'
  - Each protein is assigned to a module. You can also analyze how each protein does individually using MSStatsTMT procedure detailed above. MSStatsTMT will yield how much the abundance of each protein changed as a result of the Gene Of Interest (GOI) being knocked out.
 
-If you want to look at Gene Ontologies, you may run the following file:
+### Gene Ontologies
+If you want to look at Gene Ontologies, you may run the following file the original author used for WASH proteins:
 - analysis/4_Module-Analysis/2_module-GSEA.R
 
-OR if you have a specific pathway in mind..
+**OR**
+
+You can scrape ShinyGo using '~/ShinyGo/ShinyGO_analysis/1_analyze_modules.ipynb'. This works for in an automated loop but sometimes the websites is spontaneous so in intervals it will er.. 
+- ie. if you have 50 modules, it may err on the 25th module.
+You can create a heatmap with the identified pathways and each module using 'ShinyGo/ShinyGO_analysis/2_cluster_analysis.py'
+
+**OR** if you have a specific pathway in mind..
 
 Navigate into ~/geneontologies and run:
  - geneontologies/get_KEGGnums.ipynb 
-    - input: {}
+    - input: ~/tables/{KOGENE}-TMT-Module-Results.xlsx
  - geneontologies/get_pathways.ipynb
-    - input: {} 
+    - input: ~/tables/{KOGENE}_moduleResults_KEGGortholog.csv
     - This will calculate gene_ontologies with your pathway of interest (POI) using a hypergeometric test. Each module is analyzed at a time, and the overlap between genes in that module vs genes in POI will indicate p-value. (p-val <0.05 == module is enriched in that pathway) 
         - P-value is adjusted with benjamin-hochberg for multiple testing (FDR) since multiple memberships are analyzed at once.
-        - output: ~enrichments_DIY/{YOURGENE_KO}_{YOUR_POI}_hypergeometricDIY.csv
+        - output: ~/enrichments_DIY/{YOURGENE_KO}_{YOUR_POI}_hypergeometricDIY.csv
 
     - GSEApy is an inbuilt wrapper for Enrichr (allows list of human/mouse genes to compare against numerous biological libraries- pathways, diseases, genesets). This analysis is also provided as a benchmark using inbuilt python/enrichment analysis.
         - documentation: https://gseapy.readthedocs.io/en/latest/introduction.html
