@@ -94,7 +94,6 @@ if (!dir.exists(tabsdir)) { dir.create(tabsdir) }
 
 # extract the raw TMT data from zipped file
 myfile <- file.path(downdir, input_data) # all peptide information
-print(myfile)
 peptides <- data.table::fread(myfile)
 
 ## ---- map all Uniprot Protein numbers to stable entrez IDs
@@ -169,8 +168,8 @@ peptides <- peptides %>%
 	# calculate relative_Intensity (sum normalization)str
   group_by(Protein)
 
-# ## ----  save key results
-# 
+## ----  save key results
+
 # # final normalized protein in tidy format as rda object
 #
 # names(peptides)[names(peptides) == "Protein"] <- "Protein"
