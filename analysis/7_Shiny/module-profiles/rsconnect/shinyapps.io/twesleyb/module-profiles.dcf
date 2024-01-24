@@ -1,0 +1,11 @@
+name: module-profiles
+title:
+username:
+account: twesleyb
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 4460382
+bundleId: 4929373
+url: https://twesleyb.shinyapps.io/module-profiles/
+when: 1629133142.84957
+lastSyncTime: 1629133142.84958
