@@ -156,3 +156,5 @@ This program provides a pipeline to plot all proteins in each mixture individual
 
 
 Please navigate into ~/compare_MutvsWTfractions/WT_Mut_fractionPlot.ipynb and change the variables in the second cell to your data. Please work through the notebook, changing the input to what you need specifically!
+
+You can just run main, the commented out function calls are there if you would like to check the function at the definition.
