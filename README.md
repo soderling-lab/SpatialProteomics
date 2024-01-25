@@ -65,13 +65,19 @@ If you decide to webscrape with ShinyGo to get pathways for each module. Please 
 If you would like to create plots comparing mutant vs wildtype fractions, then deactivate any current conda environment `conda deactivate` then run `conda env create -f plot_env.yml`
 
 ## Pipeline Overview
-Tandem Mass Tag (TMT) is a chemical label that facilitates sample multiplexing in mass spectrometry for the quantification and identification of proteins, often used in large-scale proteomic studies. Each sample mixture contains several fractions (X in number), each labeled with a unique chemical barcode. Each fraction represents a different organelle. Typically, $\geq 2$ mixtures are analyzed, providing various replicates of WT (Wild Type) & MUT (Mutant) fractions for detailed analysis. In an unperturbed/unmutated environment, every fraction is analyzed, and then a specific gene is knocked out, creating a corresponding MUT fraction. Thus, for X WT fractions in a mixture, there are also X MUT fractions, totaling 2X fractions per mixture.
+Tandem Mass Tag (TMT) is a chemical label that facilitates sample multiplexing in mass spectrometry for the quantification and identification of proteins, often used in large-scale proteomic studies. Each sample mixture contains several fractions (X in number), each labeled with a unique chemical barcode. Each fraction corresponds to different cellular components with different densities. Typically, $\geq 2$ mixtures are analyzed, providing various replicates of WT (Wild Type) & MUT (Mutant) fractions for detailed analysis. In an unperturbed/unmutated environment, every fraction is analyzed, and then a specific gene is knocked out, creating a corresponding MUT fraction. Thus, for X WT fractions in a mixture, there are also X MUT fractions, totaling 2X fractions per mixture.
 
-In this study, 7 WT and 7 MUT fractions were analyzed in each mixture. The TMT proteomic data allows for examining how proteins cluster in terms of abundance or regulation relative to others. Any correlation in abundance change, whether negative or positive, is tracked. An adjacency matrix is created to show how each protein's abundance changes across fractions (WT & MUT) and how this change differs from every other protein's behavior. This matrix is signed (+/-).
+In this study, 7 WT and 7 MUT fractions were analyzed in each mixture. The TMT proteomic data allows for examining how proteins cluster in terms of abundance or regulation relative to others. Any correlation in abundance change, whether negative or positive, is tracked. An adjacency matrix is created to show how each protein's abundance changes across fractions (WT & MUT) and how this change differs from every other protein's behavior. This matrix is signed positive (+).
 
 The Leiden algorithm is used for community detection, analyzing inter-module and intra-module connections. The 'Surprise' optimizer is chosen for its ability to consider both node weightage and edge count in a module.
 
 With the modules identified, we use a linear mixed model to determine which modules have proteins that differ significantly in WT fractions compared to MUT fractions. A module is deemed significant if the p-value is $\leq 0.05$ between WT and MUT fractions. 
+
+Given these modules, we find which pathway (gene ontology) the proteins in each specific module are enriched in. 
+
+We also plot the averaged mixtures for each module, analyzing how the proteins vary across fractions demonstrating changes within WT, within MUT and WT and MUT compared. 
+
+**Example data files are provided under example_data/ for all steps. Please refer to this to get a sense of the program**
 
 ## Necessary Pre-processing
 Given the Tandem Mass Taggged (TMT) Mass Spectrometry data from the Proteomics Core, please use the Normalized data sheet (labeled in xlsx file) moving further.
@@ -146,5 +152,7 @@ Navigate into ~/geneontologies and run:
         - output: ~/enrichments_GSEA/{YOURGENE_KO}_{YOUR_POI}_GSEApy.csv
 
 ## Plot WT vs MUT fractions
+This program provides a pipeline to plot all proteins in each mixture individually or mixtures averaged for each module individually. The average of all protein variations are highlighted in the plot, and individual protein changes are shown in a more transparent color to provide context.
 
-Please navigate into 
+
+Please navigate into ~/compare_MutvsWTfractions/WT_Mut_fractionPlot.ipynb and change the variables in the second cell to your data. Please work through the notebook, changing the input to what you need specifically!
