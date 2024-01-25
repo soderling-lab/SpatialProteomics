@@ -1,10 +1,12 @@
 # SpatialProteomics
 
-Taken from source [SWIP-Proteomics by T. Wesley & S. H. Soderling](https://github.com/soderling-lab/SwipProteomics?tab=readme-ov-file)
+Taken from source [SWIP-Proteomics by T. WA Bradshaw & S. H. Soderling](https://github.com/soderling-lab/SwipProteomics?tab=readme-ov-file)
 
 Please refer to the SWIP-proteomics github for the foundation of this program. Below are the specific details on how to get variation analysis for each protein individually, and then protein modules.
 
-Refer to the following paper for methods and further conceptuals of the pipeline. [Genetic disruption of WASHC4 drives endo-lysosomal dysfunction and cognitive-movement impairments in mice and humans](https://elifesciences.org/articles/61590) 
+All programming in analysis/ sourced from Tyler WA Bradshaw. Adapted in certain areas to fit current needs/updates.
+
+Refer to the following paper for methods and further conceptuals of the pipeline. [Genetic disruption of WASHC4 drives endo-lysosomal dysfunction and cognitive-movement impairments in mice and humans](https://elifesciences.org/articles/61590)
 
 
 ## Environments
@@ -61,6 +63,15 @@ If you decide to webscrape with ShinyGo to get pathways for each module. Please 
 
 #### plot_MUTvsWT environment
 If you would like to create plots comparing mutant vs wildtype fractions, then deactivate any current conda environment `conda deactivate` then run `conda env create -f plot_env.yml`
+
+## Pipeline Overview
+Tandem Mass Tag (TMT) is a chemical label that facilitates sample multiplexing in mass spectrometry for the quantification and identification of proteins, often used in large-scale proteomic studies. Each sample mixture contains several fractions (X in number), each labeled with a unique chemical barcode. Each fraction represents a different organelle. Typically, $\geq 2$ mixtures are analyzed, providing various replicates of WT (Wild Type) & MUT (Mutant) fractions for detailed analysis. In an unperturbed/unmutated environment, every fraction is analyzed, and then a specific gene is knocked out, creating a corresponding MUT fraction. Thus, for X WT fractions in a mixture, there are also X MUT fractions, totaling 2X fractions per mixture.
+
+In this study, 7 WT and 7 MUT fractions were analyzed in each mixture. The TMT proteomic data allows for examining how proteins cluster in terms of abundance or regulation relative to others. Any correlation in abundance change, whether negative or positive, is tracked. An adjacency matrix is created to show how each protein's abundance changes across fractions (WT & MUT) and how this change differs from every other protein's behavior. This matrix is signed (+/-).
+
+The Leiden algorithm is used for community detection, analyzing inter-module and intra-module connections. The 'Surprise' optimizer is chosen for its ability to consider both node weightage and edge count in a module.
+
+With the modules identified, we use a linear mixed model to determine which modules have proteins that differ significantly in WT fractions compared to MUT fractions. A module is deemed significant if the p-value is $\leq 0.05$ between WT and MUT fractions. 
 
 ## Necessary Pre-processing
 Given the Tandem Mass Taggged (TMT) Mass Spectrometry data from the Proteomics Core, please use the Normalized data sheet (labeled in xlsx file) moving further.
