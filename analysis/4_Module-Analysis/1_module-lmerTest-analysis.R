@@ -4,7 +4,7 @@
 # description: module-level analysis with mixed models
 # author: Tyler W Bradshaw
 
-### Doing with abundance instead of intensity
+### Doing with abundance  termed log2(rel_intensity)
 ## ---- Inputs
 
 # Input data in root/data/
@@ -154,7 +154,7 @@ results_list[["Partition"]] <- df %>% arrange(Membership)
 results_list[["Module Results"]] <- results_df
 
 # save in root/tables
-myfile <- file.path(root,"tables", paste0(gene_name, "-TMT-Module-Results.xlsx")) ## This is log2(Relative_Intensity)
+myfile <- file.path(root,"tables", paste0(gene_name, "-TMT-Module-Results.xlsx")) ## This is ranked by log2(Relative_Intensity)
 write_xlsx(results_list, myfile)
 message("saved :", myfile)
 
