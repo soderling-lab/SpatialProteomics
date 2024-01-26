@@ -9,6 +9,21 @@ All programming in analysis/ sourced from Tyler WA Bradshaw. Adapted in certain 
 Refer to the following paper for methods and further conceptuals of the pipeline. [Genetic disruption of WASHC4 drives endo-lysosomal dysfunction and cognitive-movement impairments in mice and humans](https://elifesciences.org/articles/61590)
 
 
+## Pipeline Overview
+Tandem Mass Tag (TMT) is a chemical label that facilitates sample multiplexing in mass spectrometry for the quantification and identification of proteins, often used in large-scale proteomic studies. Each sample mixture contains several fractions (X in number), each labeled with a unique chemical barcode. Each fraction corresponds to different cellular components with different densities. Typically, $\geq 2$ mixtures are analyzed, providing various replicates of WT (Wild Type) & MUT (Mutant) fractions for detailed analysis. In an unperturbed/unmutated environment, every fraction is analyzed, and then a specific gene is knocked out, creating a corresponding MUT fraction. Thus, for X WT fractions in a mixture, there are also X MUT fractions, totaling 2X fractions per mixture.
+
+In this study, 7 WT and 7 MUT fractions were analyzed in each mixture. The TMT proteomic data allows for examining how proteins cluster in terms of abundance or regulation relative to others. Any correlation in abundance change, whether negative or positive, is tracked. An adjacency matrix is created to show how each protein's abundance changes across fractions (WT & MUT) and how this change differs from every other protein's behavior. This matrix is signed positive (+).
+
+The Leiden algorithm is used for community detection, analyzing inter-module and intra-module connections. The 'Surprise' optimizer is chosen for its ability to consider both node weightage and edge count in a module.
+
+With the modules identified, we use a linear mixed model to determine which modules have proteins that differ significantly in WT fractions compared to MUT fractions. A module is deemed significant if the p-value is $\leq 0.05$ between WT and MUT fractions. 
+
+Given these modules, we find which pathway (gene ontology) the proteins in each specific module are enriched in. 
+
+We also plot the averaged mixtures for each module, analyzing how the proteins vary across fractions demonstrating changes within WT, within MUT and WT and MUT compared. 
+
+**Example data files are provided under example_data/ for all steps. Please refer to this to get a sense of the program**
+
 ## Environments
 ### R:
 This project uses `renv` for dependency management. To set up the R environment for this project:
@@ -64,27 +79,12 @@ If you decide to webscrape with ShinyGo to get pathways for each module. Please 
 #### plot_MUTvsWT environment
 If you would like to create plots comparing mutant vs wildtype fractions, then deactivate any current conda environment `conda deactivate` then run `conda env create -f plot_env.yml`
 
-## Pipeline Overview
-Tandem Mass Tag (TMT) is a chemical label that facilitates sample multiplexing in mass spectrometry for the quantification and identification of proteins, often used in large-scale proteomic studies. Each sample mixture contains several fractions (X in number), each labeled with a unique chemical barcode. Each fraction corresponds to different cellular components with different densities. Typically, $\geq 2$ mixtures are analyzed, providing various replicates of WT (Wild Type) & MUT (Mutant) fractions for detailed analysis. In an unperturbed/unmutated environment, every fraction is analyzed, and then a specific gene is knocked out, creating a corresponding MUT fraction. Thus, for X WT fractions in a mixture, there are also X MUT fractions, totaling 2X fractions per mixture.
-
-In this study, 7 WT and 7 MUT fractions were analyzed in each mixture. The TMT proteomic data allows for examining how proteins cluster in terms of abundance or regulation relative to others. Any correlation in abundance change, whether negative or positive, is tracked. An adjacency matrix is created to show how each protein's abundance changes across fractions (WT & MUT) and how this change differs from every other protein's behavior. This matrix is signed positive (+).
-
-The Leiden algorithm is used for community detection, analyzing inter-module and intra-module connections. The 'Surprise' optimizer is chosen for its ability to consider both node weightage and edge count in a module.
-
-With the modules identified, we use a linear mixed model to determine which modules have proteins that differ significantly in WT fractions compared to MUT fractions. A module is deemed significant if the p-value is $\leq 0.05$ between WT and MUT fractions. 
-
-Given these modules, we find which pathway (gene ontology) the proteins in each specific module are enriched in. 
-
-We also plot the averaged mixtures for each module, analyzing how the proteins vary across fractions demonstrating changes within WT, within MUT and WT and MUT compared. 
-
-**Example data files are provided under example_data/ for all steps. Please refer to this to get a sense of the program**
-
 ## Necessary Pre-processing
 Given the Tandem Mass Taggged (TMT) Mass Spectrometry data from the Proteomics Core, please use the Normalized data sheet (labeled in xlsx file) moving further.
 
 Please run '0_prepData_transform.py' from 'analysis/2_SWIP-TMT' or 'analysis/3_Clustering' with your target dataset, to prep the data to start at '1_generate-network.R', '1_MSstatsTMT-analysis.R'
 
-This will transform the data to a long format so the fractions and mixtures are structured vertically rather than horizontally.
+Navigate into the `main()` function and change the filename and worksheet accordingly. This will transform the data to a long format so the fractions and mixtures are structured vertically rather than horizontally.
 
 **In the event you are starting from the PSMs, please run 0_PD-data-preprocess.R** 
 Please refer to the source code [SWIP-Proteomics by T. Wesley & S. H. Soderling](https://github.com/soderling-lab/SwipProteomics?tab=readme-ov-file) if you need to start here. 
