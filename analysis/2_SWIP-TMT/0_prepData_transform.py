@@ -10,7 +10,28 @@ import pandas as pd
 import os
 import numpy as np
 
-def convert_XLSX_file(filename, sheetname):
+def main():
+    ## SNCA == Normalized Data, LRRK2 == Table 4 Normalized Data
+    ## Vps35 == Table 3 Normalized Data
+    # filename = '/Users/poojap/Documents/SoderlingLab/SwipProteomics-master copy/data/swip_tmt copy.csv'
+    filename = 'LOPIT_LRRK2_young.xlsx'
+    worksheet = 'Table 4 Normalized Data'
+    
+    currdir = os.getcwd()
+    parent = os.path.dirname(currdir)
+    gparent = os.path.dirname(os.path.dirname(currdir))
+    rawdatafile = f"{gparent}/rawdata/{filename}"
+    # do conversion
+    # dataframe = convert_XLSX_file(rawdatafile, worksheet)
+    dataframe = transform_raw(rawdatafile, worksheet)
+
+    # write to file
+    filename = filename.replace(".xlsx", "")
+    newfilepath =  os.path.join(gparent, "transformeddata", filename)
+    writeToFile(newfilepath, dataframe)
+
+
+def transform_raw(filename, sheetname):
     if "xlsx" in filename:
         df = pd.read_excel(filename, sheet_name= sheetname)
     if "csv" in filename:
@@ -332,34 +353,12 @@ def convert_XLSX_file(filename, sheetname):
     print(newdf.iloc[: :-4].tail())
     return newdf
 
+
 def writeToFile(filename, dataframe):
     write = filename + '_Transformed.csv'
     dataframe.to_csv(write, index=True)
     print("file saved to: {}".format(write))
     return
-
-
-def main():
-    ## SNCA == Normalized Data, LRRK2 == Table 4 Normalized Data
-    ## Vps35 == Table 3 Normalized Data
-    # filename = '/Users/poojap/Documents/SoderlingLab/SwipProteomics-master copy/data/swip_tmt copy.csv'
-    filename = 'LOPIT_LRRK2_young.xlsx'
-    worksheet = 'Table 4 Normalized Data'
-    
-    current_directory = os.getcwd()
-    print(current_directory)
-    parent_directory = os.path.dirname(current_directory)
-    grandfather_directory = os.path.dirname(os.path.dirname(current_directory))
-    print("parent directory: {}".format(parent_directory))
-    rawdatafile = os.path.join(grandfather_directory, "rawdata", filename)
-    # do conversion
-    # dataframe = convert_XLSX_file(rawdatafile, worksheet)
-    dataframe = convert_XLSX_file(rawdatafile, worksheet)
-
-    # write to file
-    filename = filename.replace(".xlsx", "")
-    newfilepath =  os.path.join(grandfather_directory, "transformeddata", filename)
-    writeToFile(newfilepath, dataframe)
 
 if __name__ == "__main__":
     main()
