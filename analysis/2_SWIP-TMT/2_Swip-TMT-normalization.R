@@ -148,8 +148,8 @@ gene_map$id <- paste(gene_map$symbol,gene_map$uniprot,sep="|")
 
 ####################################################################
 ## 2023. PP--- WE DO NOT DO. DATA IS ALREADY TRANSFORMED IN 0_prepData_transform.py 
-## Deleted all unnecessary calls, pleae refer to Tyler's original implementation
-## to 
+## Deleted all unnecessary calls, please refer to Tyler's original implementation
+####################################################################
 
 peptides <- peptides %>%
 	# other munge
