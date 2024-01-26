@@ -9,7 +9,7 @@
 ## ---- Input
 
 # specify the projects root directory:
-root <- "~/Documents/SwipProteomics-master"
+root <- "~/Documents/SoderlingLab/SpatialProteomics"
 
 # NOTE: the raw data is 75 mb and is too large to be managed by git.
 # After preprocessing by this script the PSM-level data is saved as
