@@ -94,8 +94,7 @@ Please refer to the source code [SWIP-Proteomics by T. Wesley & S. H. Soderling]
 ### MSstatsTMT
 **Assess differential protein abundance between fractions between WT and MUT models**
 
-Navigate into and run: 
-
+Navigate into and run:
 
 - analysis/2_SWIP-TMT/1_MSstatsTMT-analysis.R
     - output: adjacency matrix, neten adjacency matrix, TMT protein data
