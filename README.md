@@ -10,9 +10,12 @@ Refer to the following paper for methods and further conceptuals of the pipeline
 
 
 ## Pipeline Overview
-Tandem Mass Tag (TMT) is a chemical label that facilitates sample multiplexing in mass spectrometry for the quantification and identification of proteins, often used in large-scale proteomic studies. Each sample mixture contains several fractions (X in number), each labeled with a unique chemical barcode. Each fraction corresponds to different cellular components with different densities. Typically, $\geq 2$ mixtures are analyzed, providing various replicates of WT (Wild Type) & MUT (Mutant) fractions for detailed analysis. In an unperturbed/unmutated environment, every fraction is analyzed, and then a specific gene is knocked out, creating a corresponding MUT fraction. Thus, for X WT fractions in a mixture, there are also X MUT fractions, totaling 2X fractions per mixture.
+Tandem Mass Tag (TMT) is a chemical label that facilitates sample multiplexing in mass spectrometry for the quantification and identification of proteins, often used in large-scale proteomic studies. Here, we applied the TMT method to analyze differentially fractionated samples from WT versus transgenic disease models (MUT). To ensure authenticity, 3 replicates are taken for each fraction and model, each replicate sample is referred to as a mixture. Each sample mixture contains several TMT-fractions *(F)*, each TMT-fraction labeled with a unique chemical barcode. A TMT-fraction corresponds to a specific cellular component- each with varying densities. Given these WT vs MUT model fractions, we gather protein data in each. Given the varying abundances across WT fractions and MUT fractions for all mixtures, we correlate each protein against another, identifying the spatial proteome based on similar protein regulation. The WT and MUT model are treated equivalently when identifying clusters, but after, we acknowledge the protein differences between WT and MUT models, acknowledging which protein abundances change significantly as a result of the transgenic model. These clusters are deemed significant.
 
-In this study, 7 WT and 7 MUT fractions were analyzed in each mixture. The TMT proteomic data allows for examining how proteins cluster in terms of abundance or regulation relative to others. Any correlation in abundance change, whether negative or positive, is tracked. An adjacency matrix is created to show how each protein's abundance changes across fractions (WT & MUT) and how this change differs from every other protein's behavior. This matrix is signed positive (+).
+Typically, $\geq 2$ mixtures are analyzed, providing various replicates of WT (Wild Type) & MUT (Mutant) fractions for detailed analysis. Fractions are gathered 
+In an unperturbed/unmutated environment, every fraction is analyzed, and then a transgenic model is presented in parallel and cellular fractions are, creating a corresponding MUT fraction. Thus, for X WT fractions in a mixture, there are also X MUT fractions, totaling 2X fractions per mixture.
+
+In this study, 7 WT and 7 MUT fractions were analyzed in each mixture. The TMT proteomic data allows for examining how proteins cluster in terms of abundance or regulation relative to others. Any correlation in abundance change, whether negative or positive, is tracked. An adjacency matrix is created to show how each protein's abundance changes across fractions (WT & MUT) and how this change differs from every other protein's behavior. This matrix is signed positive (+). 
 
 The Leiden algorithm is used for community detection, analyzing inter-module and intra-module connections. The 'Surprise' optimizer is chosen for its ability to consider both node weightage and edge count in a module.
 
@@ -165,3 +168,14 @@ This program provides a pipeline to plot all proteins in each mixture individual
 Please navigate into `~/compare_MutvsWTfractions/WT_Mut_fractionPlot.ipynb` and change the variables in the second cell to your data. Please work through the notebook, changing the input to what you need specifically!
 
 You can just run main, at the function definition there are calls (commented out). If you need to debug, uncomment for convenience.
+
+
+## References
+[1] Genetic Disruption of WASHC4 Drives Endo-lysosomal Dysfunction and Cognitive-Movement Impairments in Mice and Humans.
+Courtland J.L., Bradshaw T.W.A., Waitt G., Soderblom E., Ho T., Rajab A., Vancini R., Kim I.H., Soderling S.H. (2021). eLife; 10:e61590 [doi: 10.7554/eLife.61590](https://elifesciences.org/articles/61590)
+
+[2] From Louvain to Leiden: guaranteeing well-connected communities.
+Traag, V.A., Waltman. L., Van Eck, N.-J. (2018). Scientific reports, 9(1), 5233. [10.1038/s41598-019-41695-z](https://www.nature.com/articles/s41598-019-41695-z)
+
+[3] Network Enhancement as a general method to denoise weighted biological networks.
+Wang B., Pourshafeie A., Zitnik M., Zhu J., Bustamante C.D., Batzoglou S., Leskovec J. (2018). Nature Communications, 9, 3108. [10.1038/s41467-018-05469-x](https://www.nature.com/articles/s41467-018-05469-x)
