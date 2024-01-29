@@ -1,0 +1,11 @@
+name: PLOTenv
+channels:
+ - defaults
+ - conda-forge
+dependencies:
+  - python=3.8
+  - pandas
+  - matplotlib
+  - numpy
+  - ipykernel
+  - pip
