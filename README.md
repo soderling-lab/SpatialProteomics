@@ -48,7 +48,11 @@ You can load these packages using `library(PKG)`
 
 ### Python
 
-For running `analysis/3_Clustering/2_leidenalg-clustering.py` you will need a specific python environment. 
+For notebooks (`.ipynb` files), you have to push the environment to the jupyter kernel so you can select it as a kernel. Please run 
+`python -m ipykernel install --user --name <env> --display-name "displayname"`
+
+#### Spatial Proteomics
+To run `analysis/3_Clustering/2_leidenalg-clustering.py` you will need a specific python environment. 
 
 In the `~/analysis/` of this repository `SpatialProteomics/`, please run:
 
