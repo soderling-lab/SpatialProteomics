@@ -125,7 +125,8 @@ Navigate into [analysis/3_Clustering](analysis/3_Clustering) to change variables
 
 Given the output from the four above programs, you may now find out which modules are significant when MUT model introduces different protein expression levels. 
 
-### Identify significant clusters (modules) with Linear Mixed Models
+### Linear Mixed Models
+**Identify significant protein modules (clusters)**
 Navigate into [analysis/4_Module-Analysis](analysis/4_Module-Analysis) and run:
 - [1_module-lmerTest-analysis.R](analysis/4_Module-Analysis/1_module-lmerTest-analysis.R)
 
@@ -144,7 +145,9 @@ You can scrape [ShinyGo](http://bioinformatics.sdstate.edu/go/) using [~/ShinyGo
 
 You can create a heatmap with the identified pathways modules using [ShinyGo/ShinyGO_analysis/cluster_analysis_2.py](ShinyGo/ShinyGO_analysis/cluster_analysis_2.py)
 
-**OR** if you have a specific pathway in mind (Parkinson's, Autism..)
+**OR** 
+
+If you have a specific pathway in mind (Parkinson's, Autism..)
 
 Navigate into [~/geneontologies](geneontologies/get_pathways.ipynb) and run:
  - [get_KEGGnums.ipynb](geneontologies/get_KEGGnums.ipynb)
