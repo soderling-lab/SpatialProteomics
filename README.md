@@ -20,7 +20,7 @@ The fractions are processed through a mass spectrometer, and the proteome of all
 The resulting data forms an adjacency matrix of the protein network, which is then [network enhanced](https://github.com/soderling-lab/neten) to improve the signal-to-noise ratio [[1]](#references). Given the adjaceny matrix, a simplistic network is constructed. We then implement the leiden algorithm to further cluster with intra-module and inter-module analysis, optimizing the Surprise function for community detection. [[1]](#references)[[2]](#references). During module identification, variations between WT and MUT conditions are not considered. Post clustering, these variations are reintegrated, and we fit a linear mixed model to assess contrasts in protein abundance between WT and MUT. A module is considered significant if the contrast indicates that the transgenic condition substantially affects protein expression levels within that module, determined by a $\text{p-value} \leq 0.05$.
 Each module, along with differences in protein expression between WT and MUT conditions, is visually represented. Proteins are plotted individually, and their averages are used to highlight distinctions between WT and MUT expressions.
 
-Following module detection, we explore gene ontologies to identify enriched pathways using tools like ShinyGo [[4]], GSEApy [[5]], and hypergeometric tests. Additionally, for specific pathways (e.g., Parkinson's Disease), we determine which modules have proteins closely related to the relevant gene set.
+Following module detection, we explore gene ontologies to identify enriched pathways using tools like ShinyGo [[4]](#references), GSEApy [[5]](#references), and hypergeometric tests. Additionally, for specific pathways (e.g., Parkinson's Disease), we determine which modules have proteins closely related to the relevant gene set.
 
 **Example data files are provided under example_data/ for all steps. Please refer to this to get a sense of the program**
 
@@ -158,7 +158,7 @@ Navigate into [~/geneontologies](geneontologies/get_pathways.ipynb) and run:
         - P-value is adjusted with benjamin-hochberg for multiple testing (FDR) since multiple memberships are analyzed at once.
         - output: `~/enrichments_DIY/{YOURGENE_KO}_{YOUR_POI}_hypergeometricDIY.csv`
 
-    - GSEApy is an inbuilt wrapper for Enrichr (allows list of human/mouse genes to compare against numerous biological libraries- pathways, diseases, genesets). This analysis is also provided as a benchmark using inbuilt python/enrichment analysis.
+    - [GSEApy](https://gseapy.readthedocs.io/en/latest/introduction.html) is an inbuilt wrapper for Enrichr (allows list of human/mouse genes to compare against numerous biological libraries- pathways, diseases, genesets). This analysis is also provided as a benchmark using inbuilt python/enrichment analysis.
         - documentation: https://gseapy.readthedocs.io/en/latest/introduction.html
         - output: `~/enrichments_GSEA/{YOURGENE_KO}_{YOUR_POI}_GSEApy.csv`
 
@@ -179,3 +179,8 @@ Traag, V.A., Waltman. L., Van Eck, N.-J. (2018). Scientific reports, 9(1), 5233.
 
 [3] Network Enhancement as a general method to denoise weighted biological networks.
 Wang B., Pourshafeie A., Zitnik M., Zhu J., Bustamante C.D., Batzoglou S., Leskovec J. (2018). Nature Communications, 9, 3108. [10.1038/s41467-018-05469-x](https://www.nature.com/articles/s41467-018-05469-x)
+
+[4] Steven Xijin Ge, Dongmin Jung, Runan Yao, ShinyGO: a graphical gene-set enrichment tool for animals and plants, Bioinformatics, Volume 36, Issue 8, April 2020, Pages 2628–2629, https://doi.org/10.1093/bioinformatics/btz931
+
+[5] Zhuoqing Fang, Xinyuan Liu, Gary Peltz, GSEApy: a comprehensive package for performing gene set enrichment analysis in Python,
+Bioinformatics, 2022;, btac757, https://doi.org/10.1093/bioinformatics/btac757
