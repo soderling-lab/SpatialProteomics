@@ -26,10 +26,11 @@ Following module detection, we explore gene ontologies to identify enriched path
 
 ## Environments
 ### R:
+
 This project uses `renv` for dependency management. To set up the R environment for this project:
 1. Open R with the current repo (SpatialProteomics)
     - if you are in bash, type `R` to enter R console
-2. Set the working directory to where SpatialProteomics/ was downloaded. `setwd('path/to/SpatialProteomics')`
+2. Set the working directory to where `SpatialProteomics/` was downloaded. `setwd('path/to/SpatialProteomics')`
 2. Run `install.packages("renv")`
 3. Run `renv::restore(lockfile = "analysis/renv.lock")`. This restores the R environment from renv.lock in `analysis/`.
 
@@ -48,40 +49,39 @@ You can load these packages using `library(PKG)`
 
 ### Python
 
-For notebooks (`.ipynb` files), you have to push the environment to the jupyter kernel so you can select it as a kernel. Please run 
+**NOTE:** For notebooks (`.ipynb` files), you have to push the environment to the jupyter kernel so you can select it as a kernel. Please run 
 `python -m ipykernel install --user --name <env> --display-name "displayname"`
 
-#### Spatial Proteomics
+<u> Spatial Proteomics Environment</u>
+
 To run `analysis/3_Clustering/2_leidenalg-clustering.py` you will need a specific python environment. 
 
 In the `~/analysis/` of this repository `SpatialProteomics/`, please run:
 
-`conda env create -f environment.yml` 
+`conda env create -f environment_spatial.yml` 
 
 and activate:
 `conda activate spatial_env`
 
 In the event you run into missing packages, please install with `conda install {pkg}` or `pip install {pkg}`
 
+**NOTE: For the singular python file in the module analysis pipeline. You must activate the environment, and then run it from the command line:** `python analysis/3_Clustering/2_leidenalg-clustering.py`
 
-**NOTE: For the singular python file in the module analysis pipeline. You must activate the environment, and then run it from the command line.**
+<u> Gene Ontology Environment </u>
 
-`python analysis/3_Clustering/2_leidenalg-clustering.py`
-
-#### Gene Ontology env
-When you start with the gene ontology pipeline (after finishing gathering all the module data) you must deactivate the `spatial_env` environment `conda deactivate`. 
+When you start with the gene ontology pipeline (after gathering all the module data) you must deactivate the `spatial_env` environment `conda deactivate`.
 
 In the `~/geneontologies/` dir please run:
-`conda env create -f go_environment.yml`
+`conda env create -f environment_GO.yml`
 
 and activate:
 `conda activate GOenv`
 
 #### ShinyGO environment
-If you decide to webscrape with ShinyGo to get pathways for each module. Please deactivate whatever env is active `conda deactivate` and run `conda env create shinygo_environment.yml`
+If you decide to webscrape with ShinyGo to get pathways for each module. Please deactivate whatever env is active `conda deactivate` and run `conda env create environment_ShinyGo.yml`
 
-#### plot_MUTvsWT environment
-If you would like to create plots comparing mutant vs wildtype fractions, then deactivate any current conda environment `conda deactivate` then run `conda env create -f plot_env.yml`
+#### compare_MutvsWTfractions environment
+If you would like to create plots comparing mutant vs wildtype fractions, then deactivate any current conda environment `conda deactivate` then run `conda env create -f environment_plot.yml`
 
 ## Program Instructions
 
@@ -99,10 +99,13 @@ Please refer to the source code [SWIP-Proteomics by T. Wesley & S. H. Soderling]
 **Assess differential protein abundance between fractions between WT and MUT models**
 
 Navigate into and run:
+- [analysis/2_SWIP-TMT/0_PD-data-preprocess.R](analysis/2_SWIP-TMT/0_PD-data-preprocess.R)
+    - input: PSM report, PSM samples 
+    - You can only run this if you have the PSMs. Reach out the proteomics core in the event you need this. Some examples are under `~/PSM`
+    - Variables and Gene strings must be changed to your case
 
-- analysis/2_SWIP-TMT/1_MSstatsTMT-analysis.R
+- [analysis/2_SWIP-TMT/1_MSstatsTMT-analysis](/analysis/2_SWIP-TMT/1_MSstatsTMT-analysis.R)
     - output: adjacency matrix, neten adjacency matrix, TMT protein data
-     - You can only run this if you have the PSMs. Reach out the proteomics core in the event you need this. Some examples are under `~/PSM`
 
 NOTE: notice that 2_SWIP-TMT-normalization is before 1_MSstatsTMT-analysis. You must get all the output data tables from 2_ before running 1_. Additionally, you will be able to get individual protein data (mut vs wt differences in abundance and significance of change) given you have the Peptide-Spectrum Match (PSMs) from the proteomics core. In the event you do, start with 'analysis/2_SWIP-TMT/0_PD-data-preprocess.R' to analyze the PSMs and get the necessary datasets (pd_psm, pd_annotation, mut_vs_control) etc. 
 
