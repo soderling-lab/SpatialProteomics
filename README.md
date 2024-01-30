@@ -2,17 +2,23 @@
 
 Taken from source [SWIP-Proteomics by T. WA Bradshaw & S. H. Soderling](https://github.com/soderling-lab/SwipProteomics?tab=readme-ov-file)
 
-Please refer to the SWIP-proteomics github for the foundation of this program. Below are the specific details on how to get variation analysis for each protein individually, and then protein modules.
+Please refer to the soderling-lab/SwipProteomics github for the foundation of this program. Below are the specific details on how to get variation analysis for each protein individually, and then protein modules.
 
-All programming in analysis/ sourced from Tyler WA Bradshaw. Adapted in certain areas to fit current needs/updates.
+All programming in `analysis/` sourced from Tyler WA Bradshaw. Adapted in certain areas to fit current needs/updates.
 
 Refer to the following paper for methods and further conceptuals of the pipeline. [Genetic disruption of WASHC4 drives endo-lysosomal dysfunction and cognitive-movement impairments in mice and humans](https://elifesciences.org/articles/61590)
 
 
 ## Pipeline Overview
-Tandem Mass Tag (TMT) is a chemical label that facilitates sample multiplexing in mass spectrometry for the quantification and identification of proteins, often used in large-scale proteomic studies. Here, we applied the TMT method to analyze differentially fractionated samples from WT versus transgenic disease models (MUT). To ensure authenticity, 3 replicates are taken for each fraction and model, each replicate sample is referred to as a mixture. Each sample mixture contains several TMT-fractions *(F)*, each TMT-fraction labeled with a unique chemical barcode. A TMT-fraction corresponds to a specific cellular component- each with varying densities. Given these WT vs MUT model fractions, we gather protein data in each. Given the varying abundances across WT fractions and MUT fractions for all mixtures, we correlate each protein against another, identifying the spatial proteome based on similar protein regulation. The WT and MUT model are treated equivalently when identifying clusters, but after, we acknowledge the protein differences between WT and MUT models, acknowledging which protein abundances change significantly as a result of the transgenic model. These clusters are deemed significant.
+Tandem Mass Tag (TMT) is a chemical label that facilitates sample multiplexing in mass spectrometry for the quantification and identification of proteins, often used in large-scale proteomic studies. Here, we applied the TMT method to analyze differentially fractionated samples from WildType (WT) versus transgenic disease models (MUT).
+
+We gather three sample replicates (mixtures) per model. Neurons in each mixture are differentially centrifuged into varying cellular fractions and each fraction is Tandem Mass Tagged to uniquely barcode it against other cellular fractions. Each fraction is now referred to as a TMT fraction.
+
+To ensure authenticity, 3 replicates are taken for each fraction and model, each replicate sample is referred to as a mixture. Each sample mixture contains several TMT-fractions *(F)*, each TMT-fraction labeled with a unique chemical barcode. A TMT-fraction corresponds to a specific cellular component- each with varying densities. Given these WT vs MUT model fractions, we gather protein data in each. Given the varying abundances across WT fractions and MUT fractions for all mixtures, we correlate each protein against another, identifying the spatial proteome based on similar protein regulation. The WT and MUT model are treated equivalently when identifying clusters, but after, we acknowledge the protein differences between WT and MUT models, acknowledging which protein abundances change significantly as a result of the transgenic model. These clusters are deemed significant.
+
 
 Typically, $\geq 2$ mixtures are analyzed, providing various replicates of WT (Wild Type) & MUT (Mutant) fractions for detailed analysis. Fractions are gathered 
+
 In an unperturbed/unmutated environment, every fraction is analyzed, and then a transgenic model is presented in parallel and cellular fractions are, creating a corresponding MUT fraction. Thus, for X WT fractions in a mixture, there are also X MUT fractions, totaling 2X fractions per mixture.
 
 In this study, 7 WT and 7 MUT fractions were analyzed in each mixture. The TMT proteomic data allows for examining how proteins cluster in terms of abundance or regulation relative to others. Any correlation in abundance change, whether negative or positive, is tracked. An adjacency matrix is created to show how each protein's abundance changes across fractions (WT & MUT) and how this change differs from every other protein's behavior. This matrix is signed positive (+). 
