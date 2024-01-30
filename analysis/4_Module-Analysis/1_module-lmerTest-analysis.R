@@ -52,7 +52,7 @@ fitModule <- function(prots, tidy_prot, fx) {
   lmer_args[["control"]] <- lme4::lmerControl(check.conv.singular="ignore")
   fm <- do.call(lmerTest::lmer, lmer_args)
   # assess overall contrast and collect results
-  LT <- tidyProt::getContrast(fm,"Transgenic","WildType") # how does it know which column to look at
+  LT <- tidyProt::getContrast(fm,"Transgenic","WildType") # which column to look at
   result <- lmerTestContrast(fm,LT) %>%
 	  mutate(Contrast='Transgenic-Wildtype') %>% unique() %>%
 	  mutate('nProts'=length(prots))
