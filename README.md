@@ -90,9 +90,8 @@ If you would like to create plots comparing mutant vs wildtype fractions, then d
 ### Necessary Pre-processing
 Given the Tandem Mass Taggged (TMT) Mass Spectrometry data from the Proteomics Core, please use the Normalized data sheet (labeled in excel file) moving further.
 
-Please run your target dataset through `0_prepData_transform.py` from `analysis/2_SWIP-TMT/` or `analysis/3_Clustering/` to prep the data to start at `1_generate-network.R` or `1_MSstatsTMT-analysis.R`
-
-In  `0_prepData_transform.py`, navigate into the `main()` function and change the filename and worksheet accordingly. This will transform the data to a long format so the fractions and mixtures are structured vertically rather than horizontally.
+1. Please run your target dataset through [0_prepData_transform.py](analysis/2_SWIP-TMT/0_PD-data-preprocess.R) from `analysis/2_SWIP-TMT/` or `analysis/3_Clustering/` to prep the data to start at `1_generate-network.R` or `1_MSstatsTMT-analysis.R`
+    - In  `0_prepData_transform.py`, navigate into the `main()` function and change the filename and worksheet accordingly. This will transform the data to a long format so the fractions and mixtures are structured vertically rather than horizontally.
 
 **In the event you are starting from the PSMs, please run 0_PD-data-preprocess.R** 
 Please refer to the source code [SWIP-Proteomics by T. Wesley & S. H. Soderling](https://github.com/soderling-lab/SwipProteomics?tab=readme-ov-file) if you need to start here. 
@@ -113,46 +112,46 @@ Navigate into and run:
 ### Leiden Algorithm
 **Spatial Protein clustering in terms of abundance regulation**
 
-First to normalize the data, run `analysis/2_SWIP-TMT/2_Swip-TMT-normalization.R` with the long, transformed data structure.
-    - Start with this to get the entire pipeline below for protein clustering
-    - saved files will be printed in console
+First to normalize the data, run [analysis/2_SWIP-TMT/2_Swip-TMT-normalization.R](analysis/2_SWIP-TMT/2_Swip-TMT-normalization.R) with the long, transformed data structure.
+- Start with this to get the entire pipeline below for protein clustering
+- Saved files will be printed in console
 
-Navigate into analysis/3_Clustering to change variables and run:
-- analysis/3_Clustering/1_generate-network.R
-- analysis/3_Clustering/2_leidenalg-clustering.py
+Navigate into [analysis/3_Clustering](analysis/3_Clustering) to change variables and run:
+- [1_generate-network.R](analysis/3_Clustering/1_generate-network.R)
+- [2_leidenalg-clustering.py](analysis/3_Clustering/2_leidenalg-clustering.py)
     - please activate the python environment using environment.yml file and run this from the command line after making your edits. `python 2_leidenalg-clustering.py`
-- analysis/3_Clustering/3_post-leidenalg.R
-- analysis/3_Clustering/4_generate-PPI-network.R
+- [3_post-leidenalg.R](analysis/3_Clustering/3_post-leidenalg.R)
+- [4_generate-PPI-network.R](analysis/3_Clustering/4_generate-PPI-network.R)
 
-Given the output from the four above programs, you may now find out which modules are significant in that WT and MUT protein abundances vary within the module.
+Given the output from the four above programs, you may now find out which modules are significant when MUT model introduces different protein expression levels. 
 
 ### Identify significant clusters (modules) with Linear Mixed Models
-Navigate into analysis/4_Module-Analysis and run:
-- analysis/4_Module-Analysis/1_module-lmerTest-analysis.R
+Navigate into [analysis/4_Module-Analysis](analysis/4_Module-Analysis) and run:
+- [1_module-lmerTest-analysis.R](analysis/4_Module-Analysis/1_module-lmerTest-analysis.R)
 
-You have found the clustered modules in your dataset! Please navigate into ~/tables, the protein modules are saved under `{YOUR_GENE}_TMT-Module-Results.xlsx`
- - Each protein is assigned to a module. You can also analyze how each protein does individually using MSStatsTMT procedure detailed above. MSStatsTMT will yield how much the abundance of **each** protein changed relative to WT and MUT fraction variances.
+You have found the clustered modules in your dataset! Please navigate into `~/tables`, the protein modules are saved under `{YOUR_GENE}_TMT-Module-Results.xlsx`
+ - Each protein is assigned to a module. You can also analyze how each protein does individually using MSStatsTMT procedure detailed above. MSStatsTMT will yield how much the abundance of **each** protein changed relative to WT and MUT variances.
 
 ### Gene Ontologies
-If you want to remain on the pipeline and look for gene ontologies,
+If you want to remain on the original pipeline and look for gene ontologies,
 you may run the following file the original author used for WASH proteins (changes needed for your GOI):
-- analysis/4_Module-Analysis/2_module-GSEA.R
+- [analysis/4_Module-Analysis/2_module-GSEA.R](analysis/4_Module-Analysis/2_module-GSEA.R)
 
 **OR**
 
-You can scrape [ShinyGo](http://bioinformatics.sdstate.edu/go/) using `~/ShinyGo/ShinyGO_analysis/1_analyze_modules.ipynb`. This works in an automated loop but sometimes the website is spontaneous so in intervals it will er.. 
+You can scrape [ShinyGo](http://bioinformatics.sdstate.edu/go/) using [~/ShinyGo/ShinyGO_analysis/module_pathways_1.ipynb](ShinyGo/ShinyGO_analysis/module_pathways_1.ipynb). This works in an automated loop but sometimes the website is spontaneous so in intervals it will er.. 
 - ie. if you have 50 modules, it may err on the 25th module, but all until 25 will save.
 
-You can create a heatmap with the identified pathways modules using `ShinyGo/ShinyGO_analysis/2_cluster_analysis.py`
+You can create a heatmap with the identified pathways modules using [ShinyGo/ShinyGO_analysis/cluster_analysis_2.py](ShinyGo/ShinyGO_analysis/cluster_analysis_2.py)
 
 **OR** if you have a specific pathway in mind (Parkinson's, Autism..)
 
-Navigate into `~/geneontologies` and run:
- - `geneontologies/get_KEGGnums.ipynb `
+Navigate into [~/geneontologies](geneontologies/get_pathways.ipynb) and run:
+ - [get_KEGGnums.ipynb](geneontologies/get_KEGGnums.ipynb)
     - input: `~/tables/{KOGENE}-TMT-Module-Results.xlsx`
     - gets KEGG ortholog nums to get pathways in next file
 
- - `geneontologies/get_pathways.ipynb`
+ - [get_pathways.ipynb](geneontologies/get_KEGGnums.ipynb)
     - input: `~/tables/{KOGENE}_moduleResults_KEGGortholog.csv`
     - Change the Pathway of Interest (POI) from Parkinson's to what you are looking for!
     - This will calculate gene_ontologies with your POI using a hypergeometric test. Each module is analyzed at a time, and the overlap between genes in that module vs genes in POI will indicate p-value. (p-val < 0.05 signifies the module is enriched in POI) 
@@ -166,7 +165,7 @@ Navigate into `~/geneontologies` and run:
 ## Plot WildType vs Mutant fractions
 This program provides a pipeline to plot all proteins in each mixture individually or averaged for each module. The average of all protein variations for WT and MUT are highlighted in the plot, and individual protein changes are shown in a more transparent color to provide context.
 
-Please navigate into `~/compare_MutvsWTfractions/WT_Mut_fractionPlot.ipynb` and change the variables in the second cell to your data. Please work through the notebook, changing the input to what you need specifically!
+Please navigate into [~/compare_MutvsWTfractions/WT_Mut_fractionPlot.ipynb](compare_MutvsWTfractions/WT_Mut_fractionPlot.ipynb) and change the variables in the second cell to your data. Please work through the notebook, changing the input to what you need specifically!
 
 You can just run main, at the function definition there are calls (commented out). If you need to debug, uncomment for convenience.
 
