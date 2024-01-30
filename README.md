@@ -10,26 +10,17 @@ Refer to the following paper for methods and further conceptuals of the pipeline
 
 
 ## Pipeline Overview
-Tandem Mass Tag (TMT) is a chemical label that facilitates sample multiplexing in mass spectrometry for the quantification and identification of proteins, often used in large-scale proteomic studies. Here, we applied the TMT method to analyze differentially fractionated samples from WildType (WT) versus transgenic disease models (MUT).
+Tandem Mass Tag (TMT) is a labeling technique used in mass spectrometry for protein quantification and identification in large-scale proteomic studies. In this study, we utilized TMT to analyze fractionated samples from WildType (WT) and transgenic disease models (MUT).
 
-We gather three sample replicates (mixtures) per model. Neurons in each mixture are differentially centrifuged into varying cellular fractions and each fraction is Tandem Mass Tagged to uniquely barcode it against other cellular fractions. Each fraction is now referred to as a TMT fraction.
+Biological samples are taken from both WT and MUT models, and each is centrifuged into seven distinct cellular fractions.  Each cellular fraction is labeled with a TMT barcode, differentiating it from the others. A plasma control is taken alongside each biological sample $$(7 \text{ WT TMT-fractions} + 7 \text{ MUT TMT-fractions} + 2 {\text{ Control sample}})$$ per replicate.
+One replicate has 16 TMT-fractions representing the WT, MUT mouse models. This experiment is done three times (triplicate) with different biological samples taken every time, yielding three mixtures. The triplicate is significant to diminish any bias or contamination when coming to analysis.
 
-To ensure authenticity, 3 replicates are taken for each fraction and model, each replicate sample is referred to as a mixture. Each sample mixture contains several TMT-fractions *(F)*, each TMT-fraction labeled with a unique chemical barcode. A TMT-fraction corresponds to a specific cellular component- each with varying densities. Given these WT vs MUT model fractions, we gather protein data in each. Given the varying abundances across WT fractions and MUT fractions for all mixtures, we correlate each protein against another, identifying the spatial proteome based on similar protein regulation. The WT and MUT model are treated equivalently when identifying clusters, but after, we acknowledge the protein differences between WT and MUT models, acknowledging which protein abundances change significantly as a result of the transgenic model. These clusters are deemed significant.
+The fractions are processed through a mass spectrometer, and the proteome of all three mixtures is analyzed. The control fractions in each mixture are excluded from analysis. Each protein is correlated against itself across all fractions and mixtures for both WT and MUT models.
 
+The resulting data forms an adjacency matrix of the protein network, which is then [network enhanced](https://github.com/soderling-lab/neten) to improve the signal-to-noise ratio [[1]](#references). Given the adjaceny matrix, a simplistic network is constructed. We then implement the leiden algorithm to further cluster with intra-module and inter-module analysis, optimizing the Surprise function for community detection. [[1]](#references)[[2]](#references). During module identification, variations between WT and MUT conditions are not considered. Post clustering, these variations are reintegrated, and we fit a linear mixed model to assess contrasts in protein abundance between WT and MUT. A module is considered significant if the contrast indicates that the transgenic condition substantially affects protein expression levels within that module, determined by a $\text{p-value} \leq 0.05$.
+Each module, along with differences in protein expression between WT and MUT conditions, is visually represented. Proteins are plotted individually, and their averages are used to highlight distinctions between WT and MUT expressions.
 
-Typically, $\geq 2$ mixtures are analyzed, providing various replicates of WT (Wild Type) & MUT (Mutant) fractions for detailed analysis. Fractions are gathered 
-
-In an unperturbed/unmutated environment, every fraction is analyzed, and then a transgenic model is presented in parallel and cellular fractions are, creating a corresponding MUT fraction. Thus, for X WT fractions in a mixture, there are also X MUT fractions, totaling 2X fractions per mixture.
-
-In this study, 7 WT and 7 MUT fractions were analyzed in each mixture. The TMT proteomic data allows for examining how proteins cluster in terms of abundance or regulation relative to others. Any correlation in abundance change, whether negative or positive, is tracked. An adjacency matrix is created to show how each protein's abundance changes across fractions (WT & MUT) and how this change differs from every other protein's behavior. This matrix is signed positive (+). 
-
-The Leiden algorithm is used for community detection, analyzing inter-module and intra-module connections. The 'Surprise' optimizer is chosen for its ability to consider both node weightage and edge count in a module.
-
-With the modules identified, we use a linear mixed model to determine which modules have proteins that differ significantly in WT fractions compared to MUT fractions. A module is deemed significant if the p-value is $\leq 0.05$ between WT and MUT fractions. 
-
-Given these modules, we find which pathway (gene ontology) the proteins in each specific module are enriched in. 
-
-We also plot the averaged mixtures for each module, analyzing how the proteins vary across fractions demonstrating changes within WT, within MUT and WT and MUT compared. 
+Following module detection, we explore gene ontologies to identify enriched pathways using tools like ShinyGo [[4]], GSEApy [[5]], and hypergeometric tests. Additionally, for specific pathways (e.g., Parkinson's Disease), we determine which modules have proteins closely related to the relevant gene set.
 
 **Example data files are provided under example_data/ for all steps. Please refer to this to get a sense of the program**
 
