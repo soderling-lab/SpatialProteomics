@@ -32,12 +32,12 @@ This project uses `renv` for dependency management. To set up the R environment 
     - if you are in bash, type `R` to enter R console
 2. Set the working directory to where `SpatialProteomics/` was downloaded. `setwd('path/to/SpatialProteomics')`
 2. Run `install.packages("renv")`
-3. Run `renv::restore(lockfile = "analysis/renv.lock")`. This restores the R environment from renv.lock in `analysis/`.
+3. Run `renv::restore(lockfile = "analysis/renv.lock")`. This restores the R environment from [renv.lock](analysis/renv.lock) in `analysis/`.
 
 If you are missing a package:
 `install.packages("PKG")`
 
-It may be a package from BiocManger specifically. In that event:
+It may be a package from [BiocManger](https://cran.r-project.org/web/packages/BiocManager/vignettes/BiocManager.html) specifically. In that event:
 `BiocManager::install("AnnotationDbi")`
 
 
@@ -54,11 +54,11 @@ You can load these packages using `library(PKG)`
 
 <u> Spatial Proteomics Environment</u>
 
-To run `analysis/3_Clustering/2_leidenalg-clustering.py` you will need a specific python environment. 
+To run [`analysis/3_Clustering/2_leidenalg-clustering.py`](analysis/3_Clustering/2_leidenalg-clustering.py) you will need a specific python environment. 
 
 In the `~/analysis/` of this repository `SpatialProteomics/`, please run:
 
-`conda env create -f environment_spatial.yml` 
+`conda env create -f`[` environment_spatial.yml`](analysis/environment_spatial.yml)
 
 and activate:
 `conda activate spatial_env`
@@ -71,17 +71,19 @@ In the event you run into missing packages, please install with `conda install {
 
 When you start with the gene ontology pipeline (after gathering all the module data) you must deactivate the `spatial_env` environment `conda deactivate`.
 
-In the `~/geneontologies/` dir please run:
-`conda env create -f environment_GO.yml`
+In the [~/geneontologies/](geneontologies) dir please run:        
+`conda env create -f`[`environment_GO.yml`](geneontologies/environment_GO.yml)
 
 and activate:
 `conda activate GOenv`
 
 #### ShinyGO environment
-If you decide to webscrape with ShinyGo to get pathways for each module. Please deactivate whatever env is active `conda deactivate` and run `conda env create environment_ShinyGo.yml`
+If you decide to webscrape with ShinyGo to get pathways for each module. Please deactivate whatever env is active `conda deactivate` and run
+
+ `conda env create -f `[`environment_ShinyGo.yml`](ShinyGo/environment_ShinyGo.yml)
 
 #### compare_MutvsWTfractions environment
-If you would like to create plots comparing mutant vs wildtype fractions, then deactivate any current conda environment `conda deactivate` then run `conda env create -f environment_plot.yml`
+If you would like to create plots comparing mutant vs wildtype fractions, then deactivate any current conda environment `conda deactivate` then run `conda env create -f ` [`environment_plot.yml`](compare_MutvsWTfractions/environment_plot.yml)
 
 ## Program Instructions
 
@@ -105,9 +107,8 @@ Navigate into and run:
     - Variables and Gene strings must be changed to your case
 
 - [analysis/2_SWIP-TMT/1_MSstatsTMT-analysis](/analysis/2_SWIP-TMT/1_MSstatsTMT-analysis.R)
+    - input: data tables from `0_PD-data-preprocess.R`
     - output: adjacency matrix, neten adjacency matrix, TMT protein data
-
-NOTE: notice that 2_SWIP-TMT-normalization is before 1_MSstatsTMT-analysis. You must get all the output data tables from 2_ before running 1_. Additionally, you will be able to get individual protein data (mut vs wt differences in abundance and significance of change) given you have the Peptide-Spectrum Match (PSMs) from the proteomics core. In the event you do, start with 'analysis/2_SWIP-TMT/0_PD-data-preprocess.R' to analyze the PSMs and get the necessary datasets (pd_psm, pd_annotation, mut_vs_control) etc. 
 
 ### Leiden Algorithm
 **Spatial Protein clustering in terms of abundance regulation**
