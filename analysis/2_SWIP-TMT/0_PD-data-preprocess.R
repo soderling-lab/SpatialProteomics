@@ -17,12 +17,12 @@ root <- "~/Documents/SoderlingLab/SpatialProteomics"
 # format and analyzed with MSstatsTMT.
 input_dir <- "rdata/PSM.zip"
 
-# need local copy of the raw data (too big for git)
-stopifnot(file.exists(file.path(root,input_dir)))
+## need local copy of the raw data (too big for git)
+# stopifnot(file.exists(file.path(root,input_dir)))
 
 # PSM.zip contains:
-input_psm <- "PSM/5359_PSM_Report.xlsx" # the data exported from PD
-input_samples <- "PSM/5359_Sample_Report.xlsx" # MS run and sample info
+input_psm <- "/example_data/PSM/PSM_SNCA/psm_SNCA.xlsx" # the data exported from PD
+input_samples <- "/example_data/PSM/PSM_SNCA/sample_list_102722_6070_SNCA.xlsx" # MS run and sample info ## sample list
 
 
 ## ---- Output
