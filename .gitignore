@@ -22,3 +22,4 @@ __pycache__/
 DataViewing/
 SpatialProteomics-DSParkinsons.Rproj
 .DS_Store
+compare_MutvsWTfractions/WT_Mut_fractionPlotSWIP.ipynb
