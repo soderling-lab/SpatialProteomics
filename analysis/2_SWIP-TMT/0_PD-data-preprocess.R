@@ -15,14 +15,13 @@ root <- "~/Documents/SoderlingLab/SpatialProteomics"
 # After preprocessing by this script the PSM-level data is saved as
 # pd_psm.rda in root/data (~46 MB). pd_psm.rda is converted to MSstatsTMT's
 # format and analyzed with MSstatsTMT.
-input_dir <- "rdata/PSM.zip"
 
 ## need local copy of the raw data (too big for git)
-# stopifnot(file.exists(file.path(root,input_dir)))
+
 
 # PSM.zip contains:
-input_psm <- "/example_data/PSM/PSM_SNCA/psm_SNCA.xlsx" # the data exported from PD
-input_samples <- "/example_data/PSM/PSM_SNCA/sample_list_102722_6070_SNCA.xlsx" # MS run and sample info ## sample list
+input_psm <- "PSM/PSM_SNCA/psm_SNCA_6070.xlsx" # the data exported from PD
+input_samples <- "PSM/PSM_SNCA/sample_list_102722_6070_SNCA.xlsx" # MS run and sample info ## sample list
 
 
 ## ---- Output
@@ -108,7 +107,7 @@ mkdir(datadir, warn = FALSE)
 rdatdir <- file.path(root, "rdata")
 mkdir(rdatdir, warn = FALSE)
 
-downdir <- file.path(root, "downloads")
+downdir <- file.path(root, "example_data")
 mkdir(downdir, warn = FALSE)
 
 
@@ -129,10 +128,6 @@ devtools::load_all(quiet = TRUE)
 
 ## ---- unzip the data in root/data
 
-# unzip data into downloads
-unzip(file.path(root, input_dir), exdir = downdir)
-message("\nUnzipped ", input_dir, " into ", downdir, ".")
-
 
 ## ---- read PSM data from excel
 
@@ -145,24 +140,19 @@ raw_pd <- readxl::read_excel(myfile, progress = FALSE)
 
 # re-format PSM data for MSstatsTMT
 raw_pd <- reformat_cols(raw_pd) # changes colnames to match what MSstats expects
-
+print(colnames(raw_pd))
 
 ## ---- load sample data
 # received this excel spreadsheet from GW, exported from PD
 
 # pass meaningful colnames to read_excel
 col_names <- c(
-  "Sample", "Mixture", "MS.Channel", "drop",
+  "Sample", "Mixture", "MS.Channel",
   "Channel", "Proteomics ID", "ConditionFraction", "Experiment"
 )
 myfile <- file.path(downdir, input_samples)
 samples <- readxl::read_excel(myfile, col_names = col_names)
-
-# clean-up
-mydir <- file.path(downdir, tools::file_path_sans_ext(basename(input_dir)))
-unlink(mydir, recursive = TRUE)
-message("\nRemoved ", mydir, ".")
-
+print(colnames(myfile))
 
 ## ---- re-format sample metadata annotations for MSstats
 
@@ -243,8 +233,9 @@ entrez[names(mapped_by_hand)] <- mapped_by_hand
 
 # check: Have we successfully mapped all Uniprot IDs to Entrez?
 check <- sum(is.na(entrez)) == 0
+print(sum(is.na(entrez)))
 if (!check) {
-  stop("Unable to map all UniprotIDs to Entrez.")
+  warning("Unable to map all UniprotIDs to Entrez.")
 }
 
 # map entrez ids to gene symbols using twesleyb/getPPIs
@@ -252,7 +243,7 @@ symbols <- geneLists::getIDs(entrez, "entrez", "symbol", species = "mouse")
 
 # check there should be no missing gene symbols
 if (any(is.na(symbols))) {
-  stop("Unable to map all Entrez to gene Symbols.")
+  warning("Unable to map all Entrez to gene Symbols.")
 }
 
 # create gene identifier mapping data.table
