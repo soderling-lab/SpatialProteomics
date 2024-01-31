@@ -37,7 +37,7 @@ input_samples <- "PSM/PSM_SNCA/sample_list_102722_6070_SNCA.xlsx" # MS run and s
 # * msstats_contrasts - a matrix specifying all pairwise intrafraction contrasts
 #       between Control and SWIP P1019R homozygous Mutant mice.
 # * mut_vs_control - contrast specifying the MUT versus control comparison
-#       between Control and SWIP P1019R homozygous Mutant mice.
+#       between Control and SWIP P1019R homozygous Mutant mice. 
 # * swip - WASHC4's uniprot ID
 
 ## ---- Functions
@@ -140,7 +140,6 @@ raw_pd <- readxl::read_excel(myfile, progress = FALSE)
 
 # re-format PSM data for MSstatsTMT
 raw_pd <- reformat_cols(raw_pd) # changes colnames to match what MSstats expects
-print(colnames(raw_pd))
 
 ## ---- load sample data
 # received this excel spreadsheet from GW, exported from PD
@@ -152,7 +151,6 @@ col_names <- c(
 )
 myfile <- file.path(downdir, input_samples)
 samples <- readxl::read_excel(myfile, col_names = col_names)
-print(colnames(myfile))
 
 ## ---- re-format sample metadata annotations for MSstats
 
@@ -223,6 +221,7 @@ names(entrez) <- uniprot
 
 # Map any remaining missing IDs by hand.
 missing <- entrez[is.na(entrez)]
+print(missing)
 mapped_by_hand <- c(
   P05214 = 22144,
   P0CG14 = 214987,
@@ -236,6 +235,11 @@ check <- sum(is.na(entrez)) == 0
 print(sum(is.na(entrez)))
 if (!check) {
   warning("Unable to map all UniprotIDs to Entrez.")
+}
+
+missing_ids <- which(is.na(entrez))
+if (length(missing_ids) > 0) {
+  missing_uniprot_ids <- names(entrez)[missing_ids]
 }
 
 # map entrez ids to gene symbols using twesleyb/getPPIs
@@ -346,7 +350,7 @@ conditions <- conditions[conditions != "Norm"]
 
 # utilizes internal function made available by my fork to generate a contrast
 # matrix for all pairwise comparisions defined by comp
-all_contrasts <- MSstatsTMT::makeContrast(groups = conditions)
+all_contrasts <- MSstatsTMT:::.makeContrast(groups = conditions)
 
 # subset contrast matrix, keep pairwise contrasts of interest
 biof <- sapply(strsplit(rownames(all_contrasts), "\\.|-"), "[",
