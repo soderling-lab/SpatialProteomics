@@ -14,7 +14,7 @@ gparent = os.path.dirname(parent)
 GENE_NAME = "LRRK2"
 PATHWAY = "BiologicalComponent"
 
-data = pd.read_csv(f'{parent}/ShinyGO_data/raw_heatmaps/{GENE_NAME}/{GENE_NAME}_heatmap_top_pathways_BiologicalComponent.csv')
+data = pd.read_csv(f'{parent}/example_data/ShinyGO_data/raw_heatmaps/{GENE_NAME}/{GENE_NAME}_heatmap_top_pathways_BiologicalComponent.csv')
 # Replace -1.000000e-09 with NaN
 data = data.replace(-1.000000e-09, np.nan)
 
@@ -37,7 +37,7 @@ order = leaves_list(link)
 # Reorder the data according to the clustering result
 data_reordered = data.iloc[order, :]
 
-SAVE_FILE = f'{parent}/ShinyGO_data/rendered_heatmaps/{GENE_NAME}/{PATHWAY}_heatmap_pathways_reordered.csv'
+SAVE_FILE = f'{parent}/example_data/ShinyGO_data/rendered_heatmaps/{GENE_NAME}/{PATHWAY}_heatmap_pathways_reordered.csv'
 ensure_dirs_exists(SAVE_FILE)
 data_reordered.to_csv(SAVE_FILE, index=False)
 
