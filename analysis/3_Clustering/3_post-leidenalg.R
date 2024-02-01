@@ -8,7 +8,7 @@
 root <- "~/Documents/SoderlingLab/SpatialProteomics"
 
 ## input in root/rdata
-input_part <- "Vps35_partition.csv"
+input_part <- "LRRK2_partition.csv" # change
 
 ## output is [input_part].rda
 output_part <- paste0(tools::file_path_sans_ext(input_part),".rda")
