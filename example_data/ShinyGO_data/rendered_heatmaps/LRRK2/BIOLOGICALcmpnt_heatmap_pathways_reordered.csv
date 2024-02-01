@@ -1,0 +1,11 @@
+Unnamed: 0,LRRK2_M0,LRRK2_M1,LRRK2_M2,LRRK2_M3,LRRK2_M4
+GO:0001666 response to hypoxia ,,,,,0.0498843262462013
+GO:0006941 striated muscle contraction ,,,,,0.0476528545574853
+GO:0019751 polyol metabolic process ,0.0496596248995851,,,,
+GO:0006644 phospholipid metabolic process ,0.0496596248995851,,,,2.75159931473393e-06
+GO:0030705 cytoskeleton-dependent intracellular transport ,,0.0481510049265823,,,
+GO:0070647 protein modification by small protein conjugation or removal ,,0.0438982765199573,,,
+GO:0070302 regulation of stress-activated protein kinase signaling cascade ,,,,0.0497171025222585,
+GO:0048599 oocyte development ,,,,0.0494896655271554,
+GO:0097237 cellular response to toxic substance ,,,0.0499426384786495,,
+GO:0090087 regulation of peptide transport ,,,0.0485302503515531,,
