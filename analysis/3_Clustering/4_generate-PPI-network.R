@@ -9,7 +9,9 @@ library(stringr)
 
 ## ---- Input:
 root <- "~/Documents/SoderlingLab/SpatialProteomics"
-inputfile = "Vps35_adjm.rda"
+inputfile = "LRRK2_adjm.rda"
+# load data in root/data
+data(LRRK2_gene_map) ## change to your gene
 
 input_adjm <- file.path(root,"rdata",inputfile)
 gene_name <- strsplit(inputfile, "_")[[1]][1]
@@ -35,9 +37,6 @@ stopifnot(file.exists(input_adjm))
 
 # library(SwipProteomics)
 devtools::load_all(root, quiet=TRUE)
-
-# load data in root/data
-data(Vps35_gene_map) ## this is not mandatory, but calculated in analysis/2_SWIP-TMT or analysis/1_WASH-iBioID
 
 # load data in root/rdata
 load(input_adjm)
