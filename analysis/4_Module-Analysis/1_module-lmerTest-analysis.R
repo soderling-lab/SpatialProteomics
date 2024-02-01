@@ -15,11 +15,11 @@ root <- "~/Documents/SoderlingLab/SpatialProteomics"
 
 devtools::load_all(root, quiet=TRUE)
 
-gene_name = "Vps35"
+gene_name = "LRRK2"
 # load the data
-data("Vps35_tmt")
-data("Vps35_gene_map")
-data("Vps35_partition") # partition
+data("LRRK2_tmt") # change to your gene 
+data("LRRK2_gene_map")# change to your gene 
+data("LRRK2_partition") # change it to your gene 
 
 # imports
 suppressPackageStartupMessages({
