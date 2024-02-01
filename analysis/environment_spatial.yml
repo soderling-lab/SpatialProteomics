@@ -13,3 +13,4 @@ dependencies:
   - pip:
       - tqdm
       - progressbar2
+      - openpyxl
