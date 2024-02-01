@@ -221,7 +221,7 @@ names(entrez) <- uniprot
 
 # Map any remaining missing IDs by hand.
 missing <- entrez[is.na(entrez)]
-print(missing)
+# print(missing)
 mapped_by_hand <- c(
   P05214 = 22144,
   P0CG14 = 214987,
@@ -270,38 +270,37 @@ gene_map$id <- paste(gene_map$symbol, gene_map$uniprot, sep = "|")
 # have made measurements is 16 x 3 Experiments = 48. In other words, a single
 # 'Spectrum.File' cooresponds to 12x MS.Runs and 16x Samples.
 
-all_files <- filt_pd$Spectrum.File
+# all_files <- filt_pd$Spectrum.File
 
-# collect all Spectrum.Files grouped by Experiment
-# split 'Spectrum.File' at first "_" to extract experiment identifiers
-exp_files <- lapply(
-  split(all_files, sapply(strsplit(all_files, "_"), "[", 1)),
-  unique
-)
+# # collect all Spectrum.Files grouped by Experiment
+# # split 'Spectrum.File' at first "_" to extract experiment identifiers
+# exp_files <- lapply(
+#   split(all_files, sapply(strsplit(all_files, "_"), "[", 1)),
+#   unique
+# )
+# files_dt <- data.table(
+#   "Experiment" = rep(names(exp_files),
+#     times = sapply(exp_files, length)
+#   ),
+#   "Run" = unlist(exp_files)
+# )
 
-files_dt <- data.table(
-  "Experiment" = rep(names(exp_files),
-    times = sapply(exp_files, length)
-  ),
-  "Run" = unlist(exp_files)
-)
+# # add Fraction annotation
+# files_dt$Fraction <- unlist({
+#   sapply(exp_files, function(x) as.numeric(as.factor(x)), simplify = FALSE)
+# })
 
-# add Fraction annotation
-files_dt$Fraction <- unlist({
-  sapply(exp_files, function(x) as.numeric(as.factor(x)), simplify = FALSE)
-})
-
-# collect all MS.Channels, grouped by Experiment
-all_channels <- samples$MS.Channel
-exp_channels <- split(all_channels, sapply(strsplit(all_channels, "_"), "[", 1))
-
-# as a dt
-exp_dt <- data.table(
-  "Experiment" = rep(names(exp_channels),
-    times = sapply(exp_channels, length)
-  ),
-  "MS.Channel" = unlist(exp_channels)
-)
+# # collect all MS.Channels, grouped by Experiment
+# all_channels <- samples$MS.Channel
+# # exp_channels <- split(all_channels, sapply(strsplit(all_channels, "_"), "[", 1))
+# exp_channels <- split(samples$MS.Channel, samples$Experiment)
+# # as a dt
+# exp_dt <- data.table(
+#   "Experiment" = rep(names(exp_channels),
+#     times = sapply(exp_channels, length)
+#   ),
+#   "MS.Channel" = unlist(exp_channels)
+# )
 
 
 ## ---- build annotation file for MSstatsTMT
@@ -323,6 +322,9 @@ exp_dt <- data.table(
 # create annotation_dt from Spectrum.Files and MS.Runs
 # add additional freatures from samples
 annotation_dt <- left_join(files_dt, exp_dt, by = "Experiment")
+setnames(annotation_dt, old = "Run", new = "MS.Channel")
+
+print(head(annotation_dt))
 idx <- match(annotation_dt$"MS.Channel", samples$MS.Channel)
 annotation_dt$BioFraction <- samples$BioFraction[idx]
 annotation_dt$TechRepMixture <- rep(1, length(idx))
@@ -343,11 +345,9 @@ comp <- paste(paste("Mutant", paste0("F", seq(4, 10)), sep = "."),
   paste("Control", paste0("F", seq(4, 10)), sep = "."),
   sep = "-"
 )
-
 # create a contrast matrix for given comparisons
 conditions <- unique(annotation_dt$Condition)
 conditions <- conditions[conditions != "Norm"]
-
 # utilizes internal function made available by my fork to generate a contrast
 # matrix for all pairwise comparisions defined by comp
 all_contrasts <- MSstatsTMT:::.makeContrast(groups = conditions)
