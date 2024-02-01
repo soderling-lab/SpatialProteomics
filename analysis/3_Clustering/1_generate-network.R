@@ -4,6 +4,7 @@
 # title: SwipProteomics
 # description: generate protein co-variation (correlation) network and perform
 #   network enhancement
+## Run 2_SWIP/2_SWIP-TMT-normalization.R first with transformed data to get needed data tables!!
 
 ## ---- Input:
 root <- "~/Documents/SoderlingLab/SpatialProteomics"
@@ -11,8 +12,9 @@ root <- "~/Documents/SoderlingLab/SpatialProteomics"
 setwd("~/Documents/SoderlingLab/SpatialProteomics/analysis/3_Clustering")
 
 ## Change to your gene name
-gene_name <- "Vps35" # change
-
+gene_name <- "LRRK2" # change
+data(LRRK2_gene_map) # change, in data/ folder
+data(LRRK2_tmt) # change, in data/ folder                                                                                                                                              
 ## ---- Output:
 
 # * adjm.rda
@@ -33,14 +35,11 @@ devtools::load_all(root, quiet=TRUE)
 
 # load data in root/data
 
-data(Vps35_gene_map)
-
-data(Vps35_tmt)
 
 ################################################################
-### If you are now starting with 3_Clustering
+### If
 
-input_data = "LOPIT_Vps35_young_Transformed.csv"
+input_data = "LOPIT_LRRK2_young_Transformed.csv"
 downdir = "../../transformeddata"  # Step back twice and then go to transformeddata
 myfile <- file.path(downdir, input_data) # all peptide information
 novel <- data.table::fread(myfile)
