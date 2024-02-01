@@ -208,7 +208,7 @@ misc_drop <- c(
 idx_drop1 <- filt_pd$Master.Protein.Accessions %in% ig_prots
 idx_drop2 <- filt_pd$Master.Protein.Accessions %in% misc_drop
 filt_pd <- filt_pd[idx_keep & !idx_drop1 & !idx_drop2, ]
-
+print(colnames(filt_pd))
 # collect all uniprot accession ids
 uniprot <- unique(filt_pd$Master.Protein.Accessions)
 
@@ -270,37 +270,39 @@ gene_map$id <- paste(gene_map$symbol, gene_map$uniprot, sep = "|")
 # have made measurements is 16 x 3 Experiments = 48. In other words, a single
 # 'Spectrum.File' cooresponds to 12x MS.Runs and 16x Samples.
 
-# all_files <- filt_pd$Spectrum.File
+all_files <- filt_pd$Spectrum.File
 
-# # collect all Spectrum.Files grouped by Experiment
-# # split 'Spectrum.File' at first "_" to extract experiment identifiers
-# exp_files <- lapply(
-#   split(all_files, sapply(strsplit(all_files, "_"), "[", 1)),
-#   unique
-# )
-# files_dt <- data.table(
-#   "Experiment" = rep(names(exp_files),
-#     times = sapply(exp_files, length)
-#   ),
-#   "Run" = unlist(exp_files)
-# )
+# collect all Spectrum.Files grouped by Experiment
+# split 'Spectrum.File' at first "_" to extract experiment identifiers
+exp_files <- lapply(
+  split(all_files, sapply(strsplit(all_files, "_"), "[", 1)),
+  unique
+)
+print(exp_files)
+files_dt <- data.table(
+  "Experiment" = rep(names(exp_files),
+    times = sapply(exp_files, length)
+  ),
+  "Run" = unlist(exp_files)
+)
+print(files_dt)
 
-# # add Fraction annotation
-# files_dt$Fraction <- unlist({
-#   sapply(exp_files, function(x) as.numeric(as.factor(x)), simplify = FALSE)
-# })
+# add Fraction annotation
+files_dt$Fraction <- unlist({
+  sapply(exp_files, function(x) as.numeric(as.factor(x)), simplify = FALSE)
+})
 
-# # collect all MS.Channels, grouped by Experiment
-# all_channels <- samples$MS.Channel
-# # exp_channels <- split(all_channels, sapply(strsplit(all_channels, "_"), "[", 1))
-# exp_channels <- split(samples$MS.Channel, samples$Experiment)
-# # as a dt
-# exp_dt <- data.table(
-#   "Experiment" = rep(names(exp_channels),
-#     times = sapply(exp_channels, length)
-#   ),
-#   "MS.Channel" = unlist(exp_channels)
-# )
+# collect all MS.Channels, grouped by Experiment
+all_channels <- samples$MS.Channel
+exp_channels <- split(all_channels, sapply(strsplit(all_channels, "_"), "[", 1))
+print(exp_channels)
+# as a dt
+exp_dt <- data.table(
+  "Experiment" = rep(names(exp_channels),
+    times = sapply(exp_channels, length)
+  ),
+  "MS.Channel" = unlist(exp_channels)
+)
 
 
 ## ---- build annotation file for MSstatsTMT
@@ -322,9 +324,6 @@ gene_map$id <- paste(gene_map$symbol, gene_map$uniprot, sep = "|")
 # create annotation_dt from Spectrum.Files and MS.Runs
 # add additional freatures from samples
 annotation_dt <- left_join(files_dt, exp_dt, by = "Experiment")
-setnames(annotation_dt, old = "Run", new = "MS.Channel")
-
-print(head(annotation_dt))
 idx <- match(annotation_dt$"MS.Channel", samples$MS.Channel)
 annotation_dt$BioFraction <- samples$BioFraction[idx]
 annotation_dt$TechRepMixture <- rep(1, length(idx))
