@@ -13,21 +13,20 @@ import numpy as np
 def main():
     ## SNCA == Normalized Data, LRRK2 == Table 4 Normalized Data
     ## Vps35 == Table 3 Normalized Data
-    # filename = '/Users/poojap/Documents/SoderlingLab/SwipProteomics-master copy/data/swip_tmt copy.csv'
     filename = 'LOPIT_LRRK2_young.xlsx'
     worksheet = 'Table 4 Normalized Data'
     
     currdir = os.getcwd()
     parent = os.path.dirname(currdir)
     gparent = os.path.dirname(os.path.dirname(currdir))
-    rawdatafile = f"{gparent}/rawdata/{filename}"
+    rawdatafile = f"{parent}/example_data/rawdata/{filename}" # EXAMPLE DATA DIR, change for you. 
     # do conversion
-    # dataframe = convert_XLSX_file(rawdatafile, worksheet)
     dataframe = transform_raw(rawdatafile, worksheet)
 
     # write to file
     filename = filename.replace(".xlsx", "")
-    newfilepath =  os.path.join(gparent, "transformeddata", filename)
+    newfilepath =  os.path.join(parent, "transformeddata", filename)
+    ensure_dirs_exists(newfilepath)
     writeToFile(newfilepath, dataframe)
 
 
@@ -352,7 +351,12 @@ def transform_raw(filename, sheetname):
     print(newdf.shape)
     print(newdf.iloc[: :-4].tail())
     return newdf
-
+def ensure_dirs_exists(path):
+    if "." in path:
+        path = os.path.dirname(path)
+    if not os.path.exists(path):
+        os.makedirs(path)
+    return
 
 def writeToFile(filename, dataframe):
     write = filename + '_Transformed.csv'
