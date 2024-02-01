@@ -44,7 +44,7 @@ root = "~/Documents/SoderlingLab/SpatialProteomics"
 # input_data = "TMT-raw-peptide.csv"
 
 # input_data is already in format of output 'SWIP_TMT'. Running this for gene_map
-input_data = "LOPIT_Vps35_young_Transformed.csv"
+input_data = "LOPIT_LRRK2_young_Transformed.csv"
 
 # ---- functions
 
@@ -126,9 +126,9 @@ message("The following ids are in peptides (raw) but Entrez ID was not found: ",
 # map any remaining missing IDs by hand
 message("Mapping missing IDs by hand.\n")
 missing <- entrez[is.na(entrez)]
-mapped_by_hand <- c(D3YWQ0=320127, A0A1W2P872= 384569)
+mapped_by_hand <- c(D3YWQ0=320127, A0A1W2P872= 384569, E9PUQ8= 227333, E9Q912=229877, Q9D9U9=71870)
 entrez[names(mapped_by_hand)] <- mapped_by_hand
-
+print(paste0("how many uniprots werent mapped? ",sum(is.na(entrez))))
 # check: Have we successfully mapped all Uniprot IDs to Entrez?
 check <- sum(is.na(entrez)) == 0
 if (!check) { stop("Unable to map all UniprotIDs to Entrez.") }
