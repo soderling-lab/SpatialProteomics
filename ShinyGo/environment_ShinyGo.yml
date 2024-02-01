@@ -8,6 +8,7 @@ dependencies:
   - numpy
   - matplotlib
   - selenium
+  - chromedriver
   - scipy
   - pip
   - seaborn
