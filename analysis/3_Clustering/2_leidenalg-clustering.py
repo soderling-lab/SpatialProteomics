@@ -26,7 +26,7 @@ root = "~/Documents/SoderlingLab/SpatialProteomics"
 
 # There is only one piece of input data, an input NxN adjacency
 # matrix saved as a csv file in  root/rdata/.
-adjm_file = 'Vps35_ne_adjm.csv'
+adjm_file = 'LRRK2_ne_adjm.csv' # change
 
 # Optimization methods:
 optimization_method = recursive_method = 'Surprise'
