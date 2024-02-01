@@ -1,0 +1,19 @@
+name: ShinyGOenv
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - python=3.8
+  - pandas
+  - numpy
+  - matplotlib
+  - selenium
+  - chromedriver
+  - scipy
+  - pip
+  - seaborn
+  - ipykernel
+  - pip:
+      - webdriver-manager
+      - nbimporter
+      - openpyxl

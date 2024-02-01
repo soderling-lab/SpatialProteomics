@@ -1,0 +1,15 @@
+name: GOenv
+channels:
+   - defaults
+   - conda-forge
+dependencies:
+   - python=3.8
+   - pip
+   - ipykernel
+   - tqdm
+   - scipy 
+   - pip:
+      - gseapy
+      - pandas
+      - numpy
+

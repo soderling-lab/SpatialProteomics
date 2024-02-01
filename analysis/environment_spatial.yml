@@ -1,0 +1,16 @@
+name: spatial_env
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.8
+  - leidenalg
+  - python-igraph
+  - numpy
+  - pandas
+  - requests
+  - pip
+  - pip:
+      - tqdm
+      - progressbar2
+      - openpyxl
