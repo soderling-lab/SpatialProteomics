@@ -8,11 +8,11 @@
 root <- "~/Documents/SoderlingLab/SpatialProteomics"
 
 ## input in root/rdata
-input_part <- "LRRK2_partition.csv" # change
+input_part <- "KinSub10415_partition.csv" # change
 
 ## output is [input_part].rda
 output_part <- paste0(tools::file_path_sans_ext(input_part),".rda")
-
+output_csv <-  paste0(tools::file_path_sans_ext(input_part),".csv")
 
 ## ---- prepare the R env
 
@@ -21,8 +21,8 @@ suppressPackageStartupMessages({
   library(data.table)
 })
 
-
 ## ---- load partition
+
 
 myfile <- file.path(root,"rdata",input_part)
 df <- data.table::fread(myfile,drop=1)
@@ -47,7 +47,17 @@ message("Total number of modules: ", length(unique(part))-1)
 ## ---- save as rda
 
 # save partition
-partition <- part
+partition <- data.frame(Module = part)
+colnames(partition)[colnames(partition) == "x"] <- "Module"
+
+partition <- arrange(partition, Module)
+
+
 myfile <- file.path(root,"data", output_part)
+print(output_part)
 save(partition, file = myfile, version = 2)
+message("saved: ", myfile)
+# save as csv
+myfile <- file.path(root, "data", output_csv)
+write.csv(partition, file = myfile, row.names = TRUE) # row.names = FALSE is often desirable to prevent row names being saved as an extra column
 message("saved: ", myfile)

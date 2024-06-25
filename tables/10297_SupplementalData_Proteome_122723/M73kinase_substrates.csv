@@ -1,0 +1,25 @@
+,Accession,Module,Description,Phos,Sequence,Genes,Mouse Kinase,MySequence
+21,A2A6A1,73,"G patch domain-containing protein 8, org=Mus musculus",No,VGDTDGTGNLDGKKEDEDPQDGGSLASTLSK,Gpatch8,False,VGDTDGTGNLDGKKEDEDPQDGGSLASTLSK
+1185,P06909,73,"Complement factor H, org=Mus musculus",No,CTPTGWIPVPR,Cfh,False,CTPTGWIPVPR
+3065,P97386,73,"DNA ligase 3, org=Mus musculus",No,VLLDVFTGVR,Lig3,False,VLLDVFTGVR
+3245,Q03249,73,"Galactose-1-phosphate uridylyltransferase, org=Mus musculus",No,DLTPEQAAER,Galt,False,DLTPEQAAER
+4432,Q61508,73,"Extracellular matrix protein 1, org=Mus musculus",No,AGPAVPQEAIPLQK,Ecm1,False,AGPAVPQEAIPLQK
+4964,Q6NXL6,73,"Sentrin-specific protease 5, org=Mus musculus",No,YGSLVPLSEKDVLGR,Senp5,False,YGSLVPLSEKDVLGR
+5423,Q7TNM2,73,"Tripartite motif-containing protein 46, org=Mus musculus",No,TLPKPDRLDR,Trim46,False,TLPKPDRLDR
+5454,Q7TQC7,73,"G patch domain-containing protein 2, org=Mus musculus",No,GLGLGFPLPK,Gpatch2,False,GLGLGFPLPK
+5801,Q80YR2,73,"FHF complex subunit HOOK-interacting protein 2B, org=Mus musculus",No,SLFSVLVR,Fhip2b,False,SLFSVLVR
+6512,Q8BVY0,73,"Ribosomal L1 domain-containing protein 1, org=Mus musculus",No,VTEECEEAIPQLVPIGETPDKENVK,Rsl1d1,False,VTEECEEAIPQLVPIGETPDKENVK
+6548,Q8BWW9,73,"Serine/threonine-protein kinase N2, org=Mus musculus",No,AIPTVNHSGTFSPQTPVPATVPVVDAR,Pkn2,True,AIPTVNHSGTFSPQTPVPATVPVVDAR
+6780,Q8C5D8,73,"E3 SUMO-protein ligase PIAS2, org=Mus musculus",No,VESSSVFSKPCSVTVASDASK,Pias2,False,VESSSVFSKPCSVTVASDASK
+6945,Q8CDI2,73,"F-box only protein 43, org=Mus musculus",No,SKQEQYVK,Fbxo43,False,SKQEQYVK
+6967,Q8CF89,73,"TGF-beta-activated kinase 1 and MAP3K7-binding protein 1, org=Mus musculus",No,YGYTDIDLLSAAK,Tab1,False,YGYTDIDLLSAAK
+7067,Q8CHT3,73,"Integrator complex subunit 5, org=Mus musculus",No,FQAPPPSTLLR,Ints5,False,FQAPPPSTLLR
+7655,Q8R3Y8,73,"Interferon regulatory factor 2-binding protein 1, org=Mus musculus",Yes,NVAEALGHs*PKDPGGGGGSVR,Irf2bp1,False,AEALGHs*PKDPGGG
+7656,Q8R3Y8,73,"Interferon regulatory factor 2-binding protein 1, org=Mus musculus",No,VFAFDATARPPGYEFELK,Irf2bp1,False,VFAFDATARPPGYEFELK
+7794,Q8VCY6,73,"U3 small nucleolar RNA-associated protein 6 homolog, org=Mus musculus",No,ELEIESQPGEEQPVSK,Utp6,False,ELEIESQPGEEQPVSK
+8836,Q9CQA5,73,"Mediator of RNA polymerase II transcription subunit 4, org=Mus musculus",No,DSDIQQLQK,Med4,False,DSDIQQLQK
+9615,Q9D945,73,"Protein LLP homolog, org=Mus musculus",No,VDGDALMKDVEEIATVVVAKPR,Llph,False,VDGDALMKDVEEIATVVVAKPR
+9641,Q9DAJ4,73,"WD repeat domain-containing protein 83, org=Mus musculus",No,TLDCSQGAVR,Wdr83,False,TLDCSQGAVR
+10916,Q9WVJ9,73,"EGF-containing fibulin-like extracellular matrix protein 2, org=Mus musculus",No,CVEPYVQVSDNR,Efemp2,False,CVEPYVQVSDNR
+10955,Q9Z0J1,73,"Reversion-inducing cysteine-rich protein with Kazal motifs, org=Mus musculus",No,MPFISIPVLDIK,Reck,False,MPFISIPVLDIK
+11096,Q9Z2G0,73,"Protein fem-1 homolog B, org=Mus musculus",No,ILGADNIDVSHPIIYR,Fem1b,False,ILGADNIDVSHPIIYR

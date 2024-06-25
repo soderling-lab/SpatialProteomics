@@ -1,0 +1,11 @@
+,Accession,Module,Description,Phos,Sequence,Genes,Mouse Kinase,MySequence
+2013,P36536,88,"GTP-binding protein SAR1a, org=Mus musculus",No,NYLPAINGIVFLVDCADHSR,Sar1a,False,NYLPAINGIVFLVDCADHSR
+2082,P42703,88,"Leukemia inhibitory factor receptor, org=Mus musculus",No,IASMEIPNDDITVEQAVGLGNR,Lifr,False,IASMEIPNDDITVEQAVGLGNR
+2783,P63087,88,"Serine/threonine-protein phosphatase PP1-gamma catalytic subunit, org=Mus musculus",No,AHQVVEDGYEFFAKR,Ppp1cc,False,AHQVVEDGYEFFAKR
+6008,Q8BGV7,88,"BTB/POZ domain-containing adapter for CUL3-mediated RhoA degradation protein 1, org=Mus musculus",No,LNVGGSLHYTTLR,Kctd13,False,LNVGGSLHYTTLR
+6106,Q8BHR8,88,"Centriolar satellite-associated tubulin polyglutamylase complex regulator 1, org=Mus musculus",No,KLDAESDGSTEETDESET,Cstpp1,False,KLDAESDGSTEETDESET
+9161,Q9CYI0,88,"Protein Njmu-R1, org=Mus musculus",Yes,GAVFEGLGNVAs*VELR,,False,GLGNVAs*VELRIPG
+9162,Q9CYI0,88,"Protein Njmu-R1, org=Mus musculus",No,AIQDTNNLKR,,False,AIQDTNNLKR
+10694,Q9R0P5,88,"Destrin, org=Mus musculus",Yes,As*GVQVADEVCR,Dstn,False,*GVQVADE
+10695,Q9R0P5,88,"Destrin, org=Mus musculus",Yes,LGGSLIVAFEGs*PV,Dstn,False,IVAFEGs*PV
+10696,Q9R0P5,88,"Destrin, org=Mus musculus",No,YALYDASFETK,Dstn,False,YALYDASFETK

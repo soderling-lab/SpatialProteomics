@@ -1,0 +1,26 @@
+,Accession,Module,Description,Phos,Sequence,Genes,Mouse Kinase,MySequence
+1115,P03995,71,"Glial fibrillary acidic protein, org=Mus musculus",Yes,EQLAQQQVHVEMDVAKPDLt*AALR,Gfap,False,VAKPDLt*AALREIR
+1116,P03995,71,"Glial fibrillary acidic protein, org=Mus musculus",No,ALAAELNQLR,Gfap,False,ALAAELNQLR
+1218,P08551,71,"Neurofilament light polypeptide, org=Mus musculus",No,FTVLTESAAK,Nefl,False,FTVLTESAAK
+1219,P08553,71,"Neurofilament medium polypeptide, org=Mus musculus",No,VQSLQDEVAFLR,Nefm,False,VQSLQDEVAFLR
+1868,P28798,71,"Progranulin, org=Mus musculus",No,LNTGAWGCCPFAK,Grn,False,LNTGAWGCCPFAK
+1902,P30935,71,"Somatostatin receptor type 3, org=Mus musculus",No,LSQIAQAGTSGQQPRPCTGTAK,Sstr3,False,LSQIAQAGTSGQQPRPCTGTAK
+2130,P46660,71,"Alpha-internexin, org=Mus musculus",No,VGEGFEETLGEAVISTK,Ina,False,VGEGFEETLGEAVISTK
+2171,P47879,71,"Insulin-like growth factor-binding protein 4, org=Mus musculus",No,THEDLFIIPIPNCDR,Igfbp4,False,THEDLFIIPIPNCDR
+3357,Q0P5V2,71,"Sine oculis-binding protein homolog, org=Mus musculus",No,PKLPEDSVISSYNISTGYSGLATGNGLSDSPAGSK,Sobp,False,PKLPEDSVISSYNISTGYSGLATGNGLSDSPAGSK
+3588,Q3TZZ7,71,"Extended synaptotagmin-2, org=Mus musculus",No,ALALLEDEEQAVR,Esyt2,False,ALALLEDEEQAVR
+3781,Q3UMF0,71,"Cordon-bleu protein-like 1, org=Mus musculus",No,GIFSFFQR,Cobll1,False,GIFSFFQR
+4310,Q61029,71,"Lamina-associated polypeptide 2, isoforms beta/delta/epsilon/gamma, org=Mus musculus",No,YGVNPGPIVGTTR,Tmpo,False,YGVNPGPIVGTTR
+6779,Q8C570,71,"mRNA export factor, org=Mus musculus",No,GLIVYQLENQPSEFRR,Rae1,False,GLIVYQLENQPSEFRR
+7379,Q8K3C0,71,"Ribonuclease kappa, org=Mus musculus",No,ASLLCCGPK,Rnasek,False,ASLLCCGPK
+7646,Q8R3U1,71,"Phospholipase A and acyltransferase 3, org=Mus musculus",No,LVGQEVLYR,Plaat3,False,LVGQEVLYR
+7753,Q8VCC8,71,"Rap guanine nucleotide exchange factor 3, org=Mus musculus",No,VNSAGDVVGLQPDAR,Rapgef3,False,VNSAGDVVGLQPDAR
+7908,Q8VEA4,71,"Mitochondrial intermembrane space import and assembly protein 40, org=Mus musculus",No,AMQECMQK,Chchd4,False,AMQECMQK
+7996,Q91V17,71,"E3 ubiquitin-protein ligase ZNRF1, org=Mus musculus",No,ASLADALPLHIAPR,Znrf1,False,ASLADALPLHIAPR
+8064,Q91W34,71,"RUS family member 1, org=Mus musculus",No,APLCTEQFGSGAPR,Rusf1,False,APLCTEQFGSGAPR
+8342,Q921T2,71,"Torsin-1A-interacting protein 1, org=Mus musculus",No,ISHLVLPVQPENTLK,Tor1aip1,False,ISHLVLPVQPENTLK
+8995,Q9CRB6,71,"Tubulin polymerization-promoting protein family member 3, org=Mus musculus",No,AASTDIAGLEESFRK,Tppp3,False,AASTDIAGLEESFRK
+9202,Q9CZ91,71,"Serum response factor-binding protein 1, org=Mus musculus",No,TVVREQK,Srfbp1,False,TVVREQK
+9919,Q9EQQ2,71,"Protein YIPF5, org=Mus musculus",No,QYAGCDYSQQGR,Yipf5,False,QYAGCDYSQQGR
+10075,Q9JHL1,71,"Na(+)/H(+) exchange regulatory cofactor NHE-RF2, org=Mus musculus",No,LLVVDPETDEHFKR,Nherf2,False,LLVVDPETDEHFKR
+10440,Q9QY42,71,"Prosaposin receptor GPR37, org=Mus musculus",No,QLSKEDLGFSGQAPAER,Gpr37,False,QLSKEDLGFSGQAPAER

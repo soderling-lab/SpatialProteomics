@@ -1,0 +1,20 @@
+,Accession,Module,Description,Phos,Sequence,Genes,Mouse Kinase,MySequence
+156,A6H8H2,74,"DENN domain-containing protein 4C, org=Mus musculus",No,LMPGCEVIQATPYGR,Dennd4c,False,LMPGCEVIQATPYGR
+248,D3YZV8,74,"Coiled-coil domain-containing protein 8 homolog, org=Mus musculus",No,SGSEVGQTQQASTAAER,Ccdc8,False,SGSEVGQTQQASTAAER
+843,O70624,74,"Myocilin, org=Mus musculus",No,SLESLLHQMTLGR,Myoc,False,SLESLLHQMTLGR
+1046,O89106,74,"Bis(5'-adenosyl)-triphosphatase, org=Mus musculus",No,HFQGTSITFSMQDGPEAGQTVK,Fhit,False,HFQGTSITFSMQDGPEAGQTVK
+1240,P09535,74,"Insulin-like growth factor II, org=Mus musculus",No,GIVEECCFR,Igf2,False,GIVEECCFR
+1763,P25799,74,"Nuclear factor NF-kappa-B p105 subunit, org=Mus musculus",No,EMDLSVVR,Nfkb1,False,EMDLSVVR
+2760,P63037,74,"DnaJ homolog subfamily A member 1, org=Mus musculus",No,TIVITSHPGQIVK,Dnaja1,False,TIVITSHPGQIVK
+2861,P70166,74,"Cytoplasmic polyadenylation element-binding protein 1, org=Mus musculus",No,APLSFLSLDPLGSDLDKFPAPSVR,Cpeb1,False,APLSFLSLDPLGSDLDKFPAPSVR
+3654,Q3UCV8,74,"Ubiquitin thioesterase otulin, org=Mus musculus",No,DTSNDPEQLLR,Otulin,False,DTSNDPEQLLR
+3685,Q3UGP8,74,"Putative Dol-P-Glc:Glc(2)Man(9)GlcNAc(2)-PP-Dol alpha-1,2-glucosyltransferase, org=Mus musculus",No,ALREPYMDEIFHLPQAQR,Alg10b,False,ALREPYMDEIFHLPQAQR
+4876,Q6A070,74,"TOG array regulator of axonemal microtubules protein 1, org=Mus musculus",No,TTAVQLTPALVR,Togaram1,False,TTAVQLTPALVR
+6636,Q8BZJ8,74,"Uncharacterized protein C8orf34 homolog, org=Mus musculus",No,IGPLFEELMTK,,False,IGPLFEELMTK
+6995,Q8CG47,74,"Structural maintenance of chromosomes protein 4, org=Mus musculus",No,YDIAISSCCHALDYIVVDSIDTAQECVNFLK,Smc4,False,YDIAISSCCHALDYIVVDSIDTAQECVNFLK
+7229,Q8K0S2,74,"Glutamate-rich protein 5, org=Mus musculus",No,LSSERDSPGAPQAGTMK,Erich5,False,LSSERDSPGAPQAGTMK
+7283,Q8K1S6,74,"Protein spire homolog 2, org=Mus musculus",No,DAHELILDFIR,Spire2,False,DAHELILDFIR
+7330,Q8K2P1,74,"Leucine rich adaptor protein 1-like, org=Mus musculus",No,MEDSPLPDLRDIELK,Lurap1l,False,MEDSPLPDLRDIELK
+8264,Q91ZM9,74,"Docking protein 5, org=Mus musculus",No,AASLSTVVPLPR,Dok5,False,AASLSTVVPLPR
+10402,Q9QXM0,74,"Monoacylglycerol lipase ABHD2, org=Mus musculus",No,IYVPLMLVNAADDPLVHESLLTIPK,Abhd2,False,IYVPLMLVNAADDPLVHESLLTIPK
+10818,Q9WUB4,74,"Dynactin subunit 6, org=Mus musculus",No,MGDNNVIESK,Dctn6,False,MGDNNVIESK

@@ -1,0 +1,18 @@
+,Accession,Module,Description,Phos,Sequence,Genes,Mouse Kinase,MySequence
+328,F6W8I0,85,"YjeF N-terminal domain-containing protein 3, org=Mus musculus",No,AFPLPSLSR,Yjefn3,False,AFPLPSLSR
+2459,P58069,85,"Ras GTPase-activating protein 2, org=Mus musculus",No,ENPIVGK,Rasa2,False,ENPIVGK
+2472,P58390,85,"Small conductance calcium-activated potassium channel protein 2, org=Mus musculus",No,TSSPGGAFR,Kcnn2,False,TSSPGGAFR
+3472,Q3TBT3,85,"Stimulator of interferon genes protein, org=Mus musculus",No,LLISGMDQPLPLRTDLI,Sting1,False,LLISGMDQPLPLRTDLI
+4228,Q60760,85,"Growth factor receptor-bound protein 10, org=Mus musculus",No,VIDNPAEAQSAALEEGHAWR,Grb10,False,VIDNPAEAQSAALEEGHAWR
+5600,Q80U28,85,"MAP kinase-activating death domain protein, org=Mus musculus",Yes,ATLs*DSEIETNSATSAIFGK,Madd,False,SSRATLS*DSEIETN
+5601,Q80U28,85,"MAP kinase-activating death domain protein, org=Mus musculus",Yes,s*LKEENFVASVELWNKHQEVK,Madd,False,KELDTRS*LKEENFV
+5602,Q80U28,85,"MAP kinase-activating death domain protein, org=Mus musculus",Yes,EKPAGs*PIRSSEDVSQR,Madd,False,KEKPAGS*PIRSSED
+5603,Q80U28,85,"MAP kinase-activating death domain protein, org=Mus musculus",Yes,NHSTSFs*LSNLTLPTK,Madd,False,NHSTSFs*LSNLTLP
+5604,Q80U28,85,"MAP kinase-activating death domain protein, org=Mus musculus",Yes,s*LKEENFVASVELWNK,Madd,False,KELDTRS*LKEENFV
+5605,Q80U28,85,"MAP kinase-activating death domain protein, org=Mus musculus",No,VPQLGPR,Madd,False,VPQLGPR
+5613,Q80U56,85,"Late secretory pathway protein AVL9 homolog, org=Mus musculus",No,FADYLVR,Avl9,False,FADYLVR
+7679,Q8R4H9,85,"Proton-coupled zinc antiporter SLC30A5, org=Mus musculus",No,IVQQVTGILK,Slc30a5,False,IVQQVTGILK
+9135,Q9CY18,85,"Sorting nexin-7, org=Mus musculus",Yes,IADHPTLTFNEDFKVFLt*AQAEELSSYK,Snx7,False,DFKVFLt*AQAEELS
+9136,Q9CY18,85,"Sorting nexin-7, org=Mus musculus",No,QGPGLLSR,Snx7,False,QGPGLLSR
+9952,Q9ERD6,85,"Ras-specific guanine nucleotide-releasing factor RalGPS2, org=Mus musculus",No,IISDLQQSCEYDIPILPHVQK,Ralgps2,False,IISDLQQSCEYDIPILPHVQK
+10628,Q9QZN4,85,"F-box only protein 6, org=Mus musculus",No,TLPEETVVIGR,Fbxo6,False,TLPEETVVIGR

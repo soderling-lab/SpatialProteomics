@@ -5,16 +5,30 @@
 # description: generate protein co-variation (correlation) network and perform
 #   network enhancement
 ## Run 2_SWIP/2_SWIP-TMT-normalization.R first with transformed data to get needed data tables!!
-
+## downloads
+if (!requireNamespace("devtools", quietly = TRUE)) {
+    install.packages("devtools")
+}
+library(devtools)
+if (!requireNamespace("igraph", quietly = TRUE)) {
+    install.packages("igraph" )
+}
+if (!requireNamespace("reshape2", quietly = TRUE)) {
+    install.packages("reshape2" )
+}
+if (!requireNamespace("neten", quietly = TRUE)) {
+    devtools::install_github("soderling-lab/neten")
+}
 ## ---- Input:
 root <- "~/Documents/SoderlingLab/SpatialProteomics"
+data_dir <- file.path(root, "data")
 # setting working directory manually in the event session restarts
 setwd("~/Documents/SoderlingLab/SpatialProteomics/analysis/3_Clustering")
 
 ## Change to your gene name
-gene_name <- "LRRK2" # change
-data(LRRK2_gene_map) # change, in data/ folder
-data(LRRK2_tmt) # change, in data/ folder                                                                                                                                              
+gene_name <- "" # change
+load(file.path(data_dir, "KinSub10415_gene_map.rda"))
+load(file.path(data_dir, "KinSub10415_tmt.rda"))                                                                                                                                             
 ## ---- Output:
 
 # * adjm.rda
@@ -39,7 +53,7 @@ devtools::load_all(root, quiet=TRUE)
 ################################################################
 ### If
 
-input_data = "LOPIT_LRRK2_young_Transformed.csv"
+input_data = "10415/Transformed_KinSub10415_unbiased_normalized_041124_AnnotatedHumanKinome.csv"
 downdir = "../../transformeddata"  # Step back twice and then go to transformeddata
 myfile <- file.path(downdir, input_data) # all peptide information
 novel <- data.table::fread(myfile)
@@ -47,10 +61,10 @@ novel <- data.table::fread(myfile)
 gene_name <- sub("^[^_]*_([^_]+)_.*$", "\\1", input_data)
 
 ### Where 
-myfile <- file.path("../../data", paste0(gene_name, "_tmt.rda"))
-save(peptides,file=myfile,version=2)
-message("saved: ", myfile)
-########################
+# myfile <- file.path("../../data", paste0(gene_name, "_tmt.rda"))
+# save(peptides,file=myfile,version=2)
+# message("saved: ", myfile)
+# ########################
 
 # imports
 suppressPackageStartupMessages({
@@ -71,7 +85,17 @@ message("Generating covariation network...")
 
 # no median summarization of bioreplicates
 # network is constructed from log2(Intensity) ~ Abundance
-dm <- peptides %>%
+## adjust for duplicate accessions&fractions
+peptides <- peptides %>%
+  group_by(Protein, Mixture, Genotype, BioFraction, Condition) %>%
+  summarize(
+    Intensity = sum(Intensity, na.rm = TRUE), ## MEAN?
+    Abundance = sum(Abundance, na.rm = TRUE),
+    Relative_Intensity = sum(Relative_Intensity, na.rm = TRUE), # sum checked, and correct.
+    .groups = 'drop'
+  )
+  
+dm <- peptides %>% ## need to adjust for sum
   reshape2::dcast(Protein ~ Mixture + Genotype + BioFraction, value.var = "Abundance") %>%
   as.data.table() %>%
   as.matrix(rownames="Protein")

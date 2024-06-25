@@ -1,0 +1,19 @@
+,Accession,Module,Description,Phos,Sequence,Genes,Mouse Kinase,MySequence
+78,A2AKG8,75,"Focadhesin, org=Mus musculus",No,TVAGIPNFILK,Focad,False,TVAGIPNFILK
+1424,P13504,75,"Interleukin-1 receptor type 1, org=Mus musculus",No,VDIVLWYR,Il1r1,False,VDIVLWYR
+1624,P19426,75,"Negative elongation factor E, org=Mus musculus",No,KGNTLYVYGEDMTPTLLR,Nelfe,False,KGNTLYVYGEDMTPTLLR
+2455,P58044,75,"Isopentenyl-diphosphate Delta-isomerase 1, org=Mus musculus",No,IIADTFLFK,Idi1,False,IIADTFLFK
+3668,Q3UEI1,75,"cAMP-specific 3',5'-cyclic phosphodiesterase 4C, org=Mus musculus",No,HMSLLADLK,Pde4c,False,HMSLLADLK
+4596,Q62264,75,"Thyroid hormone-inducible hepatic protein, org=Mus musculus",No,NMEQVVMIPSLLR,Thrsp,False,NMEQVVMIPSLLR
+4987,Q6NZR5,75,"Superkiller complex protein 2, org=Mus musculus",No,LVLPPLDPLNLPLR,Skic2,False,LVLPPLDPLNLPLR
+5388,Q7TMJ8,75,"Phosphoinositide-3-kinase-interacting protein 1, org=Mus musculus",No,SEAAEVQPVIGISQLVR,Pik3ip1,False,SEAAEVQPVIGISQLVR
+6377,Q8BRJ4,75,"Protein phosphatase 1 regulatory subunit 3E, org=Mus musculus",No,SQRPSLEEESEEEPGEGGTRPGAR,Ppp1r3e,False,SQRPSLEEESEEEPGEGGTRPGAR
+6751,Q8C3S2,75,"Transport and Golgi organization protein 6 homolog, org=Mus musculus",No,GILEGAGAGAAGGSDAEATAADWRK,Tango6,False,GILEGAGAGAAGGSDAEATAADWRK
+7057,Q8CHK3,75,"Lysophospholipid acyltransferase 7, org=Mus musculus",No,NIDCYGTDFCVR,Mboat7,False,NIDCYGTDFCVR
+7403,Q8K402,75,"T-box transcription factor TBX22, org=Mus musculus",No,VKGMDPVK,Tbx22,False,VKGMDPVK
+8402,Q923S6,75,"E3 ubiquitin-protein ligase NEURL1, org=Mus musculus",No,GSQILMDLSHK,Neurl1,False,GSQILMDLSHK
+8916,Q9CQU5,75,"ZW10 interactor, org=Mus musculus",No,ATYMDHVDVIK,Zwint,False,ATYMDHVDVIK
+9121,Q9CXU9,75,"Eukaryotic translation initiation factor 1b, org=Mus musculus",No,STIQNLQSFDPFADATKGDDLLPAGTEDYIHIR,Eif1b,False,STIQNLQSFDPFADATKGDDLLPAGTEDYIHIR
+9416,Q9D3A8,75,"Carboxyl-terminal PDZ ligand of neuronal nitric oxide synthase protein, org=Mus musculus",No,LLNVLQR,Nos1ap,False,LLNVLQR
+10342,Q9QUI1,75,"Leucine repeat adapter protein 25, org=Mus musculus",No,RPVNLDSALAALRK,Fam89b,False,RPVNLDSALAALRK
+11008,Q9Z188,75,"Dual specificity tyrosine-phosphorylation-regulated kinase 1B, org=Mus musculus",No,THQAPISASTLPGTGAQLPPLPR,Dyrk1b,True,THQAPISASTLPGTGAQLPPLPR

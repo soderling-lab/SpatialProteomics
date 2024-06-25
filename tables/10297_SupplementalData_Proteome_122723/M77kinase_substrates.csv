@@ -1,0 +1,15 @@
+,Accession,Module,Description,Phos,Sequence,Genes,Mouse Kinase,MySequence
+5,A1A5B6,77,"TBC1 domain family member 25, org=Mus musculus",No,VNPEDLEFIR,Tbc1d25,False,VNPEDLEFIR
+475,O08967,77,"Cytohesin-3, org=Mus musculus",No,ISAPSPEEKEEWMK,Cyth3,False,ISAPSPEEKEEWMK
+763,O70145,77,"Neutrophil cytosol factor 2, org=Mus musculus",No,LFEPVVIPVGR,Ncf2,False,LFEPVVIPVGR
+3674,Q3UFQ8,77,"Capping protein, Arp2/3 and myosin-I linker protein 3, org=Mus musculus",Yes,LGSEVLEQVLHTLs*K,Carmil3,False,QVLHTLs*KLEPDRR
+3675,Q3UFQ8,77,"Capping protein, Arp2/3 and myosin-I linker protein 3, org=Mus musculus",No,EGTDPDQEDSTQAWQK,Carmil3,False,EGTDPDQEDSTQAWQK
+5038,Q6P6M7,77,"O-phosphoseryl-tRNA(Sec) selenium transferase, org=Mus musculus",No,AVPLGNVQTVSGHTFR,Sepsecs,False,AVPLGNVQTVSGHTFR
+6071,Q8BHC9,77,"Alpha-(1,3)-fucosyltransferase 11, org=Mus musculus",No,ALLFYGTDFR,Fut11,False,ALLFYGTDFR
+6959,Q8CEC5,77,"NF-kappa-B inhibitor-interacting Ras-like protein 1, org=Mus musculus",No,TLIEPFTLLASK,Nkiras1,False,TLIEPFTLLASK
+8210,Q91YJ2,77,"Sorting nexin-4, org=Mus musculus",No,VGLENFLLR,Snx4,False,VGLENFLLR
+8843,Q9CQC8,77,"Maspardin, org=Mus musculus",No,VSPDYNWFR,Spg21,False,VSPDYNWFR
+8968,Q9CR56,77,"NF-kappa-B inhibitor-interacting Ras-like protein 2, org=Mus musculus",No,SLLEPFIYLASK,Nkiras2,False,SLLEPFIYLASK
+9463,Q9D620,77,"Rab11 family-interacting protein 1, org=Mus musculus",No,ELEDYIDNLLVR,Rab11fip1,False,ELEDYIDNLLVR
+9547,Q9D7X1,77,"BTB/POZ domain-containing protein KCTD4, org=Mus musculus",No,HVLNFLR,Kctd4,False,HVLNFLR
+9859,Q9EPB5,77,"Serine hydrolase-like protein, org=Mus musculus",No,SLQASVLMIK,Serhl,False,SLQASVLMIK

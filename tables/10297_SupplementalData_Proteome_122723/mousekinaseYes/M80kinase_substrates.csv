@@ -1,0 +1,13 @@
+,Accession,Module,Description,Phos,Sequence,Genes,ProteinName,MouseID,Mouse Kinase,Family,MouseName,MySequence
+2245,P50285,80,"Flavin-containing monooxygenase 1, org=Mus musculus",No,WVVQVLK,Fmo1,,,False,,,WVVQVLK
+3264,Q04573,80,"Neuropeptide Y receptor type 1, org=Mus musculus",No,ISMNDNEKV,Npy1r,,,False,,,ISMNDNEKV
+3411,Q1LZI2,80,"Solute carrier family 35 member F3, org=Mus musculus",No,VEGEERPREPPGPAEAQAPAGTEAGGR,Slc35f3,,,False,,,VEGEERPREPPGPAEAQAPAGTEAGGR
+3964,Q504M8;Q9JKM7,80,"Ras-related protein Rab-26;Ras-related protein Rab-37, org=Mus musculus",No,SVTHAYYR,Rab26;Rab37,,,False,,,SVTHAYYR
+4807,Q68FF7,80,"SLAIN motif-containing protein 1, org=Mus musculus",No,SFLQPPKPLSSLSTLR,Slain1,,,False,,,SFLQPPKPLSSLSTLR
+5033,Q6P5H6,80,"FERM domain-containing protein 5, org=Mus musculus",No,LLDDSEYTCTIQR,Frmd5,,,False,,,LLDDSEYTCTIQR
+5594,Q80U12,80,"Small G protein signaling modulator 2, org=Mus musculus",No,EYVESLHQNSR,Sgsm2,,,False,,,EYVESLHQNSR
+5729,Q80XC3,80,"USP6 N-terminal-like protein, org=Mus musculus",No,IEVLPIDMGAR,Usp6nl,,,False,,,IEVLPIDMGAR
+8966,Q9CR50,80,"RING finger and CHY zinc finger domain-containing protein 1, org=Mus musculus",No,STVQFHILGMK,Rchy1,,,False,,,STVQFHILGMK
+9335,Q9D1C2,80,"Protein chibby homolog 1, org=Mus musculus",No,PLFGSIFSPK,Cby1,,,False,,,PLFGSIFSPK
+10472,Q9QYE5,80,"Protein jagged-2, org=Mus musculus",No,NVNGELLSGACCDGDGR,Jag2,,,False,,,NVNGELLSGACCDGDGR
+10931,Q9WVS7,80,"Dual specificity mitogen-activated protein kinase kinase 5, org=Mus musculus",No,TYVGTNAYMAPER,Map2k5,MAP2K5,Q9WVS7,True,STE_Ser/Thr_protein_kinase_family,MP2K5_MOUSE,TYVGTNAYMAPER

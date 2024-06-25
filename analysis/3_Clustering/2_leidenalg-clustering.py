@@ -19,6 +19,7 @@ genes such as Vps35, SNCA, and LRRK2.
 
 '''
 
+import more_itertools as mit
 
 ## ---- Input
 
@@ -26,8 +27,9 @@ root = "~/Documents/SoderlingLab/SpatialProteomics"
 
 # There is only one piece of input data, an input NxN adjacency
 # matrix saved as a csv file in  root/rdata/.
-adjm_file = 'LRRK2_ne_adjm.csv' # change
-
+adjm_file = 'KinSub10415_ne_adjm.csv' # change
+LOAD=True
+LOAD_GRAPH= '/home/poojaparameswaran/Documents/SoderlingLab/SpatialProteomics/rdata/graph_kinsub10415.pkl' 
 # Optimization methods:
 optimization_method = recursive_method = 'Surprise'
 
@@ -42,7 +44,7 @@ output_name = genename
 rmin = 1 # Min resolution for multi-resolution methods.
 rmax = 1 # Max resolution for multi-resolution methods.
 nsteps = 1 # Number of steps to take between rmin and rmax.
-max_size = 100 # Maximum allowable size of a module.
+max_size = 500 # Maximum allowable size of a module.
 
 ## Optimization parameters
 # Not the number of recursive iterations, but the number
@@ -60,7 +62,7 @@ n_iterations = -1
 import numpy as np
 from igraph import Graph
 from pandas import DataFrame
-
+import pickle
 
 ## ---- Prepare the workspace
 
@@ -69,6 +71,7 @@ import sys
 import glob
 from sys import stderr
 from os.path import dirname
+from pympler import asizeof
 
 import numpy as np
 from numpy import linspace
@@ -76,18 +79,41 @@ from importlib import import_module
 from progressbar import ProgressBar
 from tqdm import tqdm
 from leidenalg import Optimiser, find_partition
-
+from scipy.sparse import csr_matrix
 from igraph import Graph
+import networkx as nx
 from pandas import read_csv, DataFrame
-
+import pandas as pd
 # project Directories:
 rdatdir = os.path.join(root,"rdata")
 funcdir = os.path.join(root,"Py")
 
 
 ## ---- Functions
+def graph_from_adjm(adjm, weighted=True,signed=True):
+    if not signed: adjm = abs(adjm) # why would we sign it?
+    network = []
+    if weighted:
+        for i in range(adjm.shape[0]):
+            for j in range(i):
+                p = adjm.index[i]
+                q = adjm.index[j]
+                val = adjm.loc[p,q]
+                if val >0:
+                    network.append((p, q, val))
+        g = Graph.TupleList(network, weights=True)
 
-def graph_from_adjm(adjm,weighted=True,signed=True):
+    else:
+        for i in range(adjm.shape[0]):
+            for j in range(i):
+                p = adjm.index[i]
+                q = adjm.index[j]
+                if val >0:
+                    network.append((p, q))
+        g = Graph.TupleList(network, weights=False)
+    return g
+
+def old_graph_from_adjm(adjm,weighted=True,signed=True):
     if not signed: adjm = abs(adjm) # why would we sign it?
     edges = adjm.stack().reset_index()
     edges.columns = ['nodeA','nodeB','weight']
@@ -97,7 +123,6 @@ def graph_from_adjm(adjm,weighted=True,signed=True):
     if not weighted: g = Graph.TupleList(edge_tuples,weights=False)
     return g
 #EOF
-
 
 ## ---- Leidenalg qualitity metrics
 
@@ -161,25 +186,32 @@ if parameters.get('multi_resolution') is True:
 #EIS
 
 
-
 ## ---- Load input adjacency matrix and create an igraph object
 
-# Load graph adjacency matrix.
 myfile = os.path.join(rdatdir,adjm_file)
 adjm = read_csv(myfile, header = 0, index_col = 0)
 
-# Create igraph graph object and add to parameters dictionary.
-# Note, this can take several minutes.
-if parameters.get('weights') is True:
-    # Create a weighted graph.
-    g = graph_from_adjm(adjm,weighted=True,signed=parameters.pop('signed'))
+if LOAD and parameters.get('weights') is True:
+    print(f'Loading graph from file {LOAD_GRAPH}.....')
+    with open(LOAD_GRAPH, 'rb') as f:
+        g = pickle.load(f)
+    parameters['graph'] = g
+    signed=parameters.pop('signed')
     parameters['weights'] = 'weight'
-    parameters['graph'] = g
+    print(f'Graph Loaded.')
 else:
-    # Create an unweighted graph.
-    g = graph_from_adjm(adjm,weighted=False,signed=parameters.pop('signed'))
-    parameters['graph'] = g
-#EIS
+    # Create igraph graph object and add to parameters dictionary.
+    # Note, this can take several minutes.
+    if parameters.get('weights') is True:
+        print('weighted is true')
+        # Create a weighted graph.
+        g = graph_from_adjm(adjm,weighted=True,signed=parameters.pop('signed'))
+        parameters['weights'] = 'weight'
+        parameters['graph'] = g
+    else:
+        # Create an unweighted graph.
+        g = graph_from_adjm(adjm,weighted=False,signed=parameters.pop('signed'))
+        parameters['graph'] = g
 
 # the input graph
 print("Input graph: {}".format(g.summary()),file=stderr)
@@ -237,7 +269,6 @@ if parameters.pop('multi_resolution') is True:
               new_params.pop('resolution_parameter')
             # get modules to be split
             subgraphs = partition.subgraphs()
-            print("subgraph", subgraphs)
             too_big = [subg.vcount() > max_size for subg in subgraphs]
             n_big = sum(too_big)
             # recursively split modules that are too big
@@ -275,6 +306,7 @@ else:
     optimiser = Optimiser()
     diff = optimiser.optimise_partition(partition,n_iterations=-1)
     print(len(partition), "partitionlength")
+    
     profile.append(partition)
     if recursive:
         # update clustering params

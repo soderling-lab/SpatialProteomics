@@ -6,12 +6,14 @@
 
 library(stringr)
 
-
+if (!requireNamespace("getPPIs", quietly = TRUE)) {
+    devtools::install_github("soderling-lab/getPPIs")
+}
 ## ---- Input:
 root <- "~/Documents/SoderlingLab/SpatialProteomics"
-inputfile = "LRRK2_adjm.rda"
+inputfile = "KinSub10415_adjm.rda"
 # load data in root/data
-data(LRRK2_gene_map) ## change to your gene
+data(KinSub10415_gene_map) ## change to your gene
 
 input_adjm <- file.path(root,"rdata",inputfile)
 gene_name <- strsplit(inputfile, "_")[[1]][1]
@@ -52,7 +54,7 @@ suppressPackageStartupMessages({
 
 
 # load mouse PPIs compiled from HitPredict
-data(musInteractome)
+data(hsInteractome) #musInteractome
 
 
 ## ---- create ppi network
@@ -65,7 +67,7 @@ idx <- match(uniprot,gene_map$uniprot)
 entrez <- gene_map$entrez[idx] # accessing entrez column in gene_map with the necessary ids
 
 # given entrez, collect ppis from musInteractome
-ppi_df <- musInteractome %>% 
+ppi_df <- hsInteractome %>% 
 	 subset(osEntrezA %in% entrez & osEntrezB %in% entrez)  %>% 
 	subset(Interactor_A_Taxonomy %in% os_keep) %>%
 	subset(Interactor_B_Taxonomy %in% os_keep) %>%

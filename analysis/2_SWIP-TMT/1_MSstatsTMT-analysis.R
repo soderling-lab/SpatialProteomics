@@ -21,14 +21,14 @@ FDR_alpha = 0.05 # FDR = Benjamini Hochberg FDR
 root <- "~/Documents/SoderlingLab/SpatialProteomics"
 setwd("../..")
 renv::load(root)
-gene_name <- "Vps35" # change
+gene_name <- "Na" # change
 
 #library(SwipProteomics)
 devtools::load_all(root)
 
 # load data in root/data from 0_PD-data-process
 data(pd_psm)
-data(Vps35_gene_map) ## YOU HAVE TO CHANGE THIS TO YOUR GENE! {}_gene_map
+# data(Vps35_gene_map) ## YOU HAVE TO CHANGE THIS TO YOUR GENE! {}_gene_map
 data(pd_annotation)
 data(mut_vs_control) # 'Mutant-Control' comparison
 data(msstats_contrasts) # 'intra-BioFraction' comparisons
