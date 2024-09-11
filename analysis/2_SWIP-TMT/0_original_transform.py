@@ -20,18 +20,22 @@ def ensure_dirs_exists(path):
 # 112744 Fxn10_Control Normalized
 #### NEED TO CHANGE FOR EACH DIFF DATASET
 def scrapeGenotype(sample_name):
-    s1 = sample_name.split()[1]
+    s1 = sample_name.split()[0]
     s2 = s1.split(f'_')[-1]
     return s2
 
 def scrapeBioFraction(sample_name):
-    s1 = sample_name.split()[1]
+    s1 = sample_name.split()[0]
     s2 = s1.split(f'_')[0]
     return s2
 
-infile = f'~/Documents/SoderlingLab/ProjectHELA/10415/KinSub10415_unbiased_normalized_041124_AnnotatedHumanKinome.csv'
+infile = f'/home/poojaparameswaran/Documents/SoderlingLab/iltp/Before_FCOnly_10595_SupplementalData_082324subSeq.xlsx'
+SHEETNAME= 'Before_TimeComparisons'
 ORGANISM = F'Homo sapiens'
-data = pd.read_csv(infile, low_memory=False)
+if 'csv' in infile:
+    data = pd.read_csv(infile, low_memory=False)
+elif 'xlsx' in infile:
+    data = pd.read_excel(infile, sheet_name=SHEETNAME)
 ## CV is control not needed. 
 
 to_drop = [x for x in data.columns if any(sub in x.lower() for sub in ['cv', 'spqc'])]
@@ -41,7 +45,7 @@ print(f'data columns you are keeping {data.columns}')
 ## DATA COLS START W NUM. SO FOLLOWING FILTER APPLIED.
 pdata_cols = [x for x in data.columns if is_first_char_digit(x) is True] 
 
-tdata = pd.melt(data, id_vars=['Accession', 'Description', 'Human_Kinase', 'Genes', 'Detected_Imputed'],
+tdata = pd.melt(data, id_vars=['Accession', 'Description', 'Genes', 'SubstrateSeq','Detected_Imputed', 'PTMLocations'],
         value_vars=pdata_cols, var_name='Mixture', value_name='Intensity')
 
 
@@ -65,11 +69,16 @@ for x, v in cols2check.items():
             tdata[x] = tdata['Mixture'].apply(v)
         else:
             tdata[x] = v
+## the raw data is labeled under Intensity.
+tdata['Abundance'].fillna(0.001, inplace=True)
+lk = f'{gparent}/transformeddata/{os.path.split(os.path.dirname(infile))[-1]}/'\
+    f'Transformed_{os.path.basename(infile).split(".")[0]}.csv'
 
-lk = f'{cwd}/transformeddata/{os.path.split(os.path.dirname(infile))[-1]}/Transformed_{os.path.basename(infile)}'
 ensure_dirs_exists(lk)
 print('saved to: ', lk)
+
 tdata.to_csv(lk)
 
 
 ## Spatial proteomics needs verbatim cols: Protein, Function, Gene, Origin, Mixture, Genotype, Biofraction
+
