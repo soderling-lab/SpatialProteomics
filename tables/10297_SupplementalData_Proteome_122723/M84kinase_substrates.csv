@@ -1,0 +1,16 @@
+,Accession,Module,Description,Phos,Sequence,Genes,Mouse Kinase,MySequence
+76,A2AKB4,84,"FERM and PDZ domain-containing protein 1, org=Mus musculus",No,VYLENGQTK,Frmpd1,False,VYLENGQTK
+219,B9EKI3,84,"TATA element modulatory factor, org=Mus musculus",No,VKEESSSISSLK,Tmf1,False,VKEESSSISSLK
+2181,P47968,84,"Ribose-5-phosphate isomerase, org=Mus musculus",No,NNQVLGIGSGSTIVHAVQR,Rpia,False,NNQVLGIGSGSTIVHAVQR
+4891,Q6DFW0,84,"Guanine nucleotide exchange factor C9orf72 homolog, org=Mus musculus",No,SELTAFWR,C9orf72,False,SELTAFWR
+5588,Q80TZ3,84,"Putative tyrosine-protein phosphatase auxilin, org=Mus musculus",Yes,SRCEEDHAALVNQEs*EQS*DDELLTLSSPHGNAEGDKPHGAK,Dnajc6,False,ALVNQEs*EQSDDEL
+5589,Q80TZ3,84,"Putative tyrosine-protein phosphatase auxilin, org=Mus musculus",Yes,SRCEEDHAALVNQEs*EQS*DDELLTLSSPHGNAEGDKPHGAK,Dnajc6,False,NQESEQS*DDELLTL
+5590,Q80TZ3,84,"Putative tyrosine-protein phosphatase auxilin, org=Mus musculus",Yes,SRCEEDHAALVNQESEQs*DDELLTLSSPHGNAEGDKPHGAK,Dnajc6,False,NQESEQs*DDELLTL
+5591,Q80TZ3,84,"Putative tyrosine-protein phosphatase auxilin, org=Mus musculus",No,AITVSPVPFFNK,Dnajc6,False,AITVSPVPFFNK
+5712,Q80X66,84,"BTB/POZ domain-containing protein 10, org=Mus musculus",No,ASPNGSMSSAGNSSR,Btbd10,False,ASPNGSMSSAGNSSR
+5785,Q80Y98,84,"Phospholipase DDHD2, org=Mus musculus",No,LMVHYQPIAGSDEWGSTSTEQGRPR,Ddhd2,False,LMVHYQPIAGSDEWGSTSTEQGRPR
+7027,Q8CGY8,84,"UDP-N-acetylglucosamine--peptide N-acetylglucosaminyltransferase 110 kDa subunit, org=Mus musculus",No,AFLDSLPDVK,Ogt,False,AFLDSLPDVK
+9703,Q9DBG3,84,"AP-2 complex subunit beta, org=Mus musculus",Yes,ECHLNADTVSs*KLQNNNVYTIAKR,Ap2b1,False,NADTVSs*KLQNNNV
+9704,Q9DBG3,84,"AP-2 complex subunit beta, org=Mus musculus",No,GLEISGTFTHR,Ap2b1,False,GLEISGTFTHR
+9871,Q9EPL0,84,"Xylosyltransferase 2, org=Mus musculus",No,FLVLPLTFNR,Xylt2,False,FLVLPLTFNR
+10166,Q9JJE7,84,"Fatty acid desaturase 3, org=Mus musculus",No,EGPAPLGAPLPIFR,Fads3,False,EGPAPLGAPLPIFR

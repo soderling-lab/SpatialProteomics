@@ -1,0 +1,14 @@
+,Accession,Module,Description,Phos,Sequence,Genes,Mouse Kinase,MySequence
+848,O88286,81,"Protein Wiz, org=Mus musculus",No,QLGVAESESSGAPIDLLYELVK,Wiz,False,QLGVAESESSGAPIDLLYELVK
+2418,P56481,81,"Gastrin/cholecystokinin type B receptor, org=Mus musculus",No,NQGGLPGGAAAPGPVHQNGGCR,Cckbr,False,NQGGLPGGAAAPGPVHQNGGCR
+3003,P83877,81,"Thioredoxin-like protein 4A, org=Mus musculus",No,FGHDWDPTCMK,Txnl4a,False,FGHDWDPTCMK
+3112,P97714,81,"Alpha-1D adrenergic receptor, org=Mus musculus",No,LLGPLQRPTTQLR,Adra1d,False,LLGPLQRPTTQLR
+3725,Q3UHI0,81,"Serine-rich coiled-coil domain-containing protein 2, org=Mus musculus",No,MFVDVPDNTVILDEMTLR,Ccser2,False,MFVDVPDNTVILDEMTLR
+5190,Q6PH08,81,"ERC protein 2, org=Mus musculus",Yes,SQHSNHRPs*PDQDDEEGIWA,Erc2,False,HSNHRPs*PDQDDEE
+5191,Q6PH08,81,"ERC protein 2, org=Mus musculus",No,ANGVLNTEDREEEIKQIEVYK,Erc2,False,ANGVLNTEDREEEIKQIEVYK
+6218,Q8BL06,81,"Inactive ubiquitin carboxyl-terminal hydrolase 54, org=Mus musculus",No,GWETESTSSEAK,Usp54,False,GWETESTSSEAK
+7002,Q8CG79,81,"Apoptosis-stimulating of p53 protein 2, org=Mus musculus",No,NLLGLYPR,Tp53bp2,False,NLLGLYPR
+8556,Q99KR6,81,"E3 ubiquitin-protein ligase RNF34, org=Mus musculus",No,GLGSGDDLDSSSLNSSR,Rnf34,False,GLGSGDDLDSSSLNSSR
+9376,Q9D270,81,"Palmitoyltransferase ZDHHC21, org=Mus musculus",No,MSNCCEEISRPR,Zdhhc21,False,MSNCCEEISRPR
+9527,Q9D7F2,81,"Ly6/PLAUR domain-containing protein 6B, org=Mus musculus",No,CFTCENAGDNYNCNR,Lypd6b,False,CFTCENAGDNYNCNR
+10169,Q9JJF9,81,"Signal peptide peptidase-like 2A, org=Mus musculus",No,SVEDAEDRETR,Sppl2a,False,SVEDAEDRETR

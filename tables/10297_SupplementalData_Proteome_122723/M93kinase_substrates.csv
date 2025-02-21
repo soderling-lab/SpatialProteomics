@@ -1,0 +1,6 @@
+,Accession,Module,Description,Phos,Sequence,Genes,Mouse Kinase,MySequence
+1815,P27671,93,"Ras-specific guanine nucleotide-releasing factor 1, org=Mus musculus",No,NIIQDYIR,Rasgrf1,False,NIIQDYIR
+1901,P30875,93,"Somatostatin receptor type 2, org=Mus musculus",No,LNETTETQR,Sstr2,False,LNETTETQR
+3233,Q02788,93,"Collagen alpha-2(VI) chain, org=Mus musculus",No,NNYATMRPDSTEIDQDTINR,Col6a2,False,NNYATMRPDSTEIDQDTINR
+5697,Q80WQ8,93,"Mis18-binding protein 1, org=Mus musculus",No,NTFVLGGIDCTYEKFENTDVNTISSLCVPIK,Mis18bp1,False,NTFVLGGIDCTYEKFENTDVNTISSLCVPIK
+6134,Q8BIS8,93,"Coiled-coil domain-containing protein 126, org=Mus musculus",No,TIAVLLDDILQR,Ccdc126,False,TIAVLLDDILQR

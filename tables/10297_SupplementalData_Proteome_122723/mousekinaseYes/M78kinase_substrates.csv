@@ -1,0 +1,13 @@
+,Accession,Module,Description,Phos,Sequence,Genes,ProteinName,MouseID,Mouse Kinase,Family,MouseName,MySequence
+2054,P40338,78,"von Hippel-Lindau disease tumor suppressor, org=Mus musculus",No,LSQEHLESQHLEEEP,Vhl,,,False,,,LSQEHLESQHLEEEP
+4192,Q60592,78,"Microtubule-associated serine/threonine-protein kinase 2, org=Mus musculus",No,CSGLPDGPHCPEETSSTPR,Mast2,MAST2,Q60592,True,AGC_Ser/Thr_protein_kinase_family,MAST2_MOUSE,CSGLPDGPHCPEETSSTPR
+4601,Q62313,78,"Trans-Golgi network integral membrane protein 1, org=Mus musculus",No,TAATDHSLGDSR,Tgoln1,,,False,,,TAATDHSLGDSR
+4832,Q69ZB8,78,"Zinc finger CCHC domain-containing protein 2, org=Mus musculus",No,SALRVEPEDAEVEPSNFAGSR,Zcchc2,,,False,,,SALRVEPEDAEVEPSNFAGSR
+5860,Q810U5,78,"Coiled-coil domain-containing protein 50, org=Mus musculus",No,AAQVAQDEEIAR,Ccdc50,,,False,,,AAQVAQDEEIAR
+6396,Q8BSK8,78,"Ribosomal protein S6 kinase beta-1, org=Mus musculus",No,FSPGDFWGR,Rps6kb1,RPS6KB1,Q8BSK8,True,AGC_Ser/Thr_protein_kinase_family,KS6B1_MOUSE,FSPGDFWGR
+7003,Q8CG80,78,"SH2 domain-containing adapter protein F, org=Mus musculus",No,GAEHMSLLYPVAIR,Shf,,,False,,,GAEHMSLLYPVAIR
+7340,Q8K2U2,78,"Alpha-ketoglutarate-dependent dioxygenase alkB homolog 6, org=Mus musculus",No,GMVPERLPPWLQR,Alkbh6,,,False,,,GMVPERLPPWLQR
+7638,Q8R3P7,78,"Clusterin-associated protein 1, org=Mus musculus",No,GASLYDLLGKEVELR,Cluap1,,,False,,,GASLYDLLGKEVELR
+7662,Q8R418,78,"Endoribonuclease Dicer, org=Mus musculus",No,VTVEVVGKGK,Dicer1,,,False,,,VTVEVVGKGK
+7779,Q8VCN9,78,"Tubulin-specific chaperone C, org=Mus musculus",No,DLSLVPER,Tbcc,,,False,,,DLSLVPER
+8091,Q91WA6,78,"Sharpin, org=Mus musculus",No,ATQPEVDLPQSSGNFKKEELATR,Sharpin,,,False,,,ATQPEVDLPQSSGNFKKEELATR

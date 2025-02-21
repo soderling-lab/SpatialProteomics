@@ -1,0 +1,5 @@
+# Ignore everything except the analysis directory
+*
+!analysis/
+
+!analysis/**

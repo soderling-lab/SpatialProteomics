@@ -1,0 +1,14 @@
+,Accession,Module,Description,Phos,Sequence,Genes,Mouse Kinase,MySequence
+275,E9Q0S6,79,"Tensin-1, org=Mus musculus",No,YWYKPEISR,Tns1,False,YWYKPEISR
+1191,P07361,79,"Alpha-1-acid glycoprotein 2, org=Mus musculus",No,AVTHVGMDESEIIFVDWKK,Orm2,False,AVTHVGMDESEIIFVDWKK
+1422,P13405,79,"Retinoblastoma-associated protein, org=Mus musculus",No,INQMVCNSDR,Rb1,False,INQMVCNSDR
+2560,P60897,79,"26S proteasome complex subunit SEM1, org=Mus musculus",No,HGYKMETS,Sem1,False,HGYKMETS
+3134,P97801,79,"Survival motor neuron protein, org=Mus musculus",No,NGDICETPDKPK,Smn1,False,NGDICETPDKPK
+4496,Q61771,79,"Kinesin-like protein KIF3B, org=Mus musculus",No,VNEDPKDALLREFQEEIAR,Kif3b,False,VNEDPKDALLREFQEEIAR
+5275,Q6ZPR6,79,"Inhibitor of Bruton tyrosine kinase, org=Mus musculus",No,ENNSGTNSMEAILTAPSK,Ibtk,False,ENNSGTNSMEAILTAPSK
+5684,Q80W49,79,"Beta/gamma crystallin domain-containing protein 3, org=Mus musculus",No,SYVEFSEPTTSSLQHGR,Crybg3,False,SYVEFSEPTTSSLQHGR
+6778,Q8C569,79,"Protein FAM118B, org=Mus musculus",No,VISYGNDYADLPEYFKR,Fam118b,False,VISYGNDYADLPEYFKR
+6960,Q8CEC6,79,"Peptidylprolyl isomerase domain and WD repeat-containing protein 1, org=Mus musculus",No,VFDVVNFDMINMLK,Ppwd1,False,VFDVVNFDMINMLK
+8205,Q91YE8,79,"Synaptopodin-2, org=Mus musculus",No,YVVDSDTVQAHTVR,Synpo2,False,YVVDSDTVQAHTVR
+9467,Q9D662,79,"Protein transport protein Sec23B, org=Mus musculus",Yes,IAGAIGPCVs*LNVK,Sec23b,False,AIGPCVs*LNVKGPC
+9468,Q9D662,79,"Protein transport protein Sec23B, org=Mus musculus",No,PAQPQEQPFVSSR,Sec23b,False,PAQPQEQPFVSSR

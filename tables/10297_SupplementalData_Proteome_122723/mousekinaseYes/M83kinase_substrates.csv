@@ -1,0 +1,12 @@
+,Accession,Module,Description,Phos,Sequence,Genes,ProteinName,MouseID,Mouse Kinase,Family,MouseName,MySequence
+198,B2RVL6,83,"Zinc finger CCHC domain-containing protein 24, org=Mus musculus",No,GEALSSSVYR,Zcchc24,,,False,,,GEALSSSVYR
+459,O08808,83,"Protein diaphanous homolog 1, org=Mus musculus",No,VSAENLQK,Diaph1,,,False,,,VSAENLQK
+890,O88520,83,"Leucine-rich repeat protein SHOC-2, org=Mus musculus",No,LSMLSIR,Shoc2,,,False,,,LSMLSIR
+3609,Q3U1V6,83,"Ubiquitin-conjugating enzyme E2 variant 3, org=Mus musculus",No,DGVLSPSSQAQLSSR,Uevld,,,False,,,DGVLSPSSQAQLSSR
+4998,Q6P1I3,83,"KICSTOR subunit 2, org=Mus musculus",No,VFASLKPGSKG,Kics2,,,False,,,VFASLKPGSKG
+5856,Q810U2,83,"Transmembrane epididymal protein 1A, org=Mus musculus",No,ISPCDRA,Teddm1a,,,False,,,ISPCDRA
+6287,Q8BMS9,83,"Ras association domain-containing protein 2, org=Mus musculus",No,QRLEEIAETPETI,Rassf2,,,False,,,QRLEEIAETPETI
+7581,Q8R2G4,83,"Ecto-ADP-ribosyltransferase 3, org=Mus musculus",No,NFKDTYGIALTAYVNEAQEQTSFYHTFSSAVK,Art3,,,False,,,NFKDTYGIALTAYVNEAQEQTSFYHTFSSAVK
+8913,Q9CQT7,83,"Desumoylating isopeptidase 1, org=Mus musculus",No,LYVYDLSK,Desi1,,,False,,,LYVYDLSK
+8976,Q9CR64,83,"Protein kish-A, org=Mus musculus",No,TGLLGIFWK,Tmem167a,,,False,,,TGLLGIFWK
+10001,Q9ES70,83,"Serine/threonine-protein kinase Nek6, org=Mus musculus",No,DIKPANVFITATGIVK,Nek6,NEK6,Q9ES70,True,NEK_Ser/Thr_protein_kinase_family,NEK6_MOUSE,DIKPANVFITATGIVK

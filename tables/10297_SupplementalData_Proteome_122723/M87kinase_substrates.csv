@@ -1,0 +1,12 @@
+,Accession,Module,Description,Phos,Sequence,Genes,Mouse Kinase,MySequence
+868,O88428,87,"Bifunctional 3'-phosphoadenosine 5'-phosphosulfate synthase 2, org=Mus musculus",No,VLSMAPGLTSVEIIPFR,Papss2,False,VLSMAPGLTSVEIIPFR
+5682,Q80W47,87,"WD repeat domain phosphoinositide-interacting protein 2, org=Mus musculus",Yes,GAYVPSs*PTR,Wipi2,False,GAYVPSs*PTRLGKG
+5683,Q80W47,87,"WD repeat domain phosphoinositide-interacting protein 2, org=Mus musculus",No,GAYVPSSPTR,Wipi2,False,GAYVPSSPTR
+6048,Q8BH61,87,"Coagulation factor XIII A chain, org=Mus musculus",No,GTYIPVPVVK,F13a1,False,GTYIPVPVVK
+7358,Q8K337,87,"Type II inositol 1,4,5-trisphosphate 5-phosphatase, org=Mus musculus",No,LVFQLPFGSHTR,Inpp5b,False,LVFQLPFGSHTR
+7566,Q8R1R3,87,"StAR-related lipid transfer protein 7, mitochondrial, org=Mus musculus",Yes,VKDy*ISAKPLEMSSEAK,Stard7,False,EIKVKDY*ISAKPLE
+7567,Q8R1R3,87,"StAR-related lipid transfer protein 7, mitochondrial, org=Mus musculus",No,VFGTYTDVTPR,Stard7,False,VFGTYTDVTPR
+8700,Q99NF3,87,"Centrosomal protein of 41 kDa, org=Mus musculus",No,GGQNLPTSCPASHSSPR,Cep41,False,GGQNLPTSCPASHSSPR
+9743,Q9DBT5,87,"AMP deaminase 2, org=Mus musculus",Yes,QIs*QDVKLEPDILLR,Ampd2,False,RLERQIS*QDVKLEP
+9744,Q9DBT5,87,"AMP deaminase 2, org=Mus musculus",No,WLVQVPR,Ampd2,False,WLVQVPR
+11073,Q9Z268,87,"RasGAP-activating-like protein 1, org=Mus musculus",No,THSAITLGDWSDPLDPDAEAQAVYR,Rasal1,False,THSAITLGDWSDPLDPDAEAQAVYR

@@ -1,0 +1,19 @@
+,Accession,Module,Description,Phos,Sequence,Genes,ProteinName,MouseID,Mouse Kinase,Family,MouseName,MySequence
+550,O35350,76,"Calpain-1 catalytic subunit, org=Mus musculus",No,YLGQDYETLR,Capn1,,,False,,,YLGQDYETLR
+751,O55176,76,"E3 ubiquitin-protein ligase Praja-1, org=Mus musculus",No,APVSICGGGENTPK,Pja1,,,False,,,APVSICGGGENTPK
+3721,Q3UHF7,76,"Transcription factor HIVEP2, org=Mus musculus",No,VPILIIPK,Hivep2,,,False,,,VPILIIPK
+4922,Q6IFT4,76,"Rho GTPase-activating protein 20, org=Mus musculus",No,LSGMPGPSMGQASSHLAYLR,Arhgap20,,,False,,,LSGMPGPSMGQASSHLAYLR
+6039,Q8BH48,76,"Ubiquitin-associated protein 1, org=Mus musculus",No,VSLPPIPTVSNIK,Ubap1,,,False,,,VSLPPIPTVSNIK
+7420,Q8K4J6,76,"Myocardin-related transcription factor A, org=Mus musculus",No,QQLVELLR,Mrtfa,,,False,,,QQLVELLR
+8201,Q91YD9,76,"Actin nucleation-promoting factor WASL, org=Mus musculus",No,AALLDQIR,Wasl,,,False,,,AALLDQIR
+8659,Q99MR1,76,"GRB10-interacting GYF protein 1, org=Mus musculus",No,AAETLNFGPEWLR,Gigyf1,,,False,,,AAETLNFGPEWLR
+9010,Q9CS74,76,"Protein ecdysoneless homolog, org=Mus musculus",No,ESQPGPQKEELQNYDVAQVSDSMK,Ecd,,,False,,,ESQPGPQKEELQNYDVAQVSDSMK
+9490,Q9D6L8,76,"Peptidyl-prolyl cis-trans isomerase-like 3, org=Mus musculus",No,VIDGLETLDELEKLPVNEK,Ppil3,,,False,,,VIDGLETLDELEKLPVNEK
+9658,Q9DB07,76,"Intraflagellar transport protein 46 homolog, org=Mus musculus",No,AIDTWIESISELHR,Ift46,,,False,,,AIDTWIESISELHR
+9741,Q9DBT3,76,"Coiled-coil domain-containing protein 97, org=Mus musculus",No,MEAVAAAEVTERKPDNDGVEPR,Ccdc97,,,False,,,MEAVAAAEVTERKPDNDGVEPR
+10106,Q9JI74,76,"Kelch-like protein 1, org=Mus musculus",No,KMENYLK,Klhl1,,,False,,,KMENYLK
+10339,Q9QUG9,76,"RAS guanyl-releasing protein 2, org=Mus musculus",No,HSSLIDIESVPTYK,Rasgrp2,,,False,,,HSSLIDIESVPTYK
+11049,Q9Z1W9,76,"STE20/SPS1-related proline-alanine-rich protein kinase, org=Mus musculus",Yes,LLt*RTPDIAQR,Stk39,STK39,Q9Z1W9,True,STE_Ser/Thr_protein_kinase_family,STK39_MOUSE,LIEKLLT*RTPDIAQ
+11050,Q9Z1W9,76,"STE20/SPS1-related proline-alanine-rich protein kinase, org=Mus musculus",Yes,TEDGDWEWs*DDEMDEKSEEGKAAASQEK,Stk39,STK39,Q9Z1W9,True,STE_Ser/Thr_protein_kinase_family,STK39_MOUSE,DGDWEWs*DDEMDEK
+11051,Q9Z1W9,76,"STE20/SPS1-related proline-alanine-rich protein kinase, org=Mus musculus",Yes,TEDGDWEWs*DDEMDEKSEEGK,Stk39,STK39,Q9Z1W9,True,STE_Ser/Thr_protein_kinase_family,STK39_MOUSE,DGDWEWs*DDEMDEK
+11052,Q9Z1W9,76,"STE20/SPS1-related proline-alanine-rich protein kinase, org=Mus musculus",No,TPDIAQR,Stk39,STK39,Q9Z1W9,True,STE_Ser/Thr_protein_kinase_family,STK39_MOUSE,TPDIAQR

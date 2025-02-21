@@ -1,0 +1,7 @@
+,Accession,Module,Description,Phos,Sequence,Genes,Mouse Kinase,MySequence
+2606,P61600,92,"N-alpha-acetyltransferase 20, org=Mus musculus",No,AFTCDDLFR,Naa20,False,AFTCDDLFR
+6024,Q8BGZ2,92,"Protein FAM168A, org=Mus musculus",No,MNPVYSPVQPGAPYGNPK,Fam168a,False,MNPVYSPVQPGAPYGNPK
+6145,Q8BJ34,92,"Meiosis regulator and mRNA stability factor 1, org=Mus musculus",No,FFPAVPLPDIR,Marf1,False,FFPAVPLPDIR
+6872,Q8CAK3,92,"Shiftless antiviral inhibitor of ribosomal frameshifting protein homolog, org=Mus musculus",Yes,FHGKVs*PK,Shfl,False,KFHGKVS*PKVLHPS
+6873,Q8CAK3,92,"Shiftless antiviral inhibitor of ribosomal frameshifting protein homolog, org=Mus musculus",No,AQDDLIPAVDR,Shfl,False,AQDDLIPAVDR
+10668,Q9R0E2,92,"Procollagen-lysine,2-oxoglutarate 5-dioxygenase 1, org=Mus musculus",No,VGEDYEGGGCR,Plod1,False,VGEDYEGGGCR

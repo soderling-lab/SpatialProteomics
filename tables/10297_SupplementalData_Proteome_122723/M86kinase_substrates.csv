@@ -1,0 +1,11 @@
+,Accession,Module,Description,Phos,Sequence,Genes,Mouse Kinase,MySequence
+286,E9Q414,86,"Apolipoprotein B-100, org=Mus musculus",No,AALQALRK,Apob,False,AALQALRK
+2435,P56942,86,"Pro-MCH, org=Mus musculus",No,NLEDDIVFNTFR,Pmch,False,NLEDDIVFNTFR
+3759,Q3UIW5,86,"E3 ubiquitin-protein ligase RNF10, org=Mus musculus",No,LLFSTSVVHTK,Rnf10,False,LLFSTSVVHTK
+4229,Q60764,86,"Probable E3 ubiquitin-protein ligase makorin-3, org=Mus musculus",No,AASLRPAPAEGGGAR,Mkrn3,False,AASLRPAPAEGGGAR
+4325,Q61083,86,"Mitogen-activated protein kinase kinase kinase 2, org=Mus musculus",No,ILQVTRPVKLEDLR,Map3k2,True,ILQVTRPVKLEDLR
+4554,Q62148,86,"Retinal dehydrogenase 2, org=Mus musculus",No,IVGSPFDPTTEQGPQIDKK,Aldh1a2,False,IVGSPFDPTTEQGPQIDKK
+5011,Q6P4T0,86,"Autophagy-related protein 2 homolog A, org=Mus musculus",No,DLTDALLDTERR,Atg2a,False,DLTDALLDTERR
+5175,Q6PGF2,86,"MORN repeat-containing protein 4, org=Mus musculus",No,NEGLFENNK,Morn4,False,NEGLFENNK
+5695,Q80WM5,86,"Hyaluronan and proteoglycan link protein 3, org=Mus musculus",No,GVVFPYQSR,Hapln3,False,GVVFPYQSR
+8555,Q99KR3,86,"Endoribonuclease LACTB2, org=Mus musculus",No,SFTVTELR,Lactb2,False,SFTVTELR
