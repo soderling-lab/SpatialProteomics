@@ -29,7 +29,7 @@ def scrapeBioFraction(sample_name):
     s2 = s1.split(f'_')[0]
     return s2
 
-infile = f'/home/poojaparameswaran/Documents/SoderlingLab/iltp/Before_FCOnly_10595_SupplementalData_082324subSeq.xlsx'
+infile = f'/home/poojaparameswaran/Documents/SoderlingLab/iltp/Annotated_SelectedGenes_Before_FCOnly_10595_SupplementalData_082324subSeq.csv'
 SHEETNAME= 'Before_TimeComparisons'
 ORGANISM = F'Homo sapiens'
 if 'csv' in infile:
@@ -45,9 +45,8 @@ print(f'data columns you are keeping {data.columns}')
 ## DATA COLS START W NUM. SO FOLLOWING FILTER APPLIED.
 pdata_cols = [x for x in data.columns if is_first_char_digit(x) is True] 
 
-tdata = pd.melt(data, id_vars=['Accession', 'Description', 'Genes', 'SubstrateSeq','Detected_Imputed', 'PTMLocations'],
+tdata = pd.melt(data, id_vars=['Accession', 'Annotated', 'Description', 'Genes', 'SubstrateSeq','Detected_Imputed', 'PTMLocations'],
         value_vars=pdata_cols, var_name='Mixture', value_name='Intensity')
-
 
 ## Intensity is raw vals 
 ## Required: Total_Intensity, Rel_Intensity, Abunadnce
@@ -57,7 +56,7 @@ tdata['Total_Intensity'] = (tdata.groupby('Accession')['Intensity']).transform('
 tdata['Relative_Intensity'] = tdata['Intensity']/tdata['Total_Intensity']
 tdata['Abundance'] = np.log2(tdata['Intensity'])
 
-cols2change = {'Accession': 'Protein', 'Description': 'Function',
+cols2change = {'Annotated': 'Protein', 'Description': 'Function', 
               'Genes': 'Gene'}
 tdata = tdata.rename(columns = cols2change)
 
@@ -71,14 +70,13 @@ for x, v in cols2check.items():
             tdata[x] = v
 ## the raw data is labeled under Intensity.
 tdata['Abundance'].fillna(0.001, inplace=True)
-lk = f'{gparent}/transformeddata/{os.path.split(os.path.dirname(infile))[-1]}/'\
+lk = f'/home/poojaparameswaran/Documents/SoderlingLab/SpatialProteomics/transformeddata/{os.path.split(os.path.dirname(infile))[-1]}/'\
     f'Transformed_{os.path.basename(infile).split(".")[0]}.csv'
 
 ensure_dirs_exists(lk)
 print('saved to: ', lk)
 
 tdata.to_csv(lk)
-
 
 ## Spatial proteomics needs verbatim cols: Protein, Function, Gene, Origin, Mixture, Genotype, Biofraction
 
