@@ -27,9 +27,9 @@ root = "~/Documents/SoderlingLab/SpatialProteomics"
 
 # There is only one piece of input data, an input NxN adjacency
 # matrix saved as a csv file in  root/rdata/.
-adjm_file = 'KinSub10415_ne_adjm.csv' # change
-LOAD=True
-LOAD_GRAPH= '/home/poojaparameswaran/Documents/SoderlingLab/SpatialProteomics/rdata/graph_kinsub10415.pkl' 
+adjm_file = 'SNCA_ne_adjm.csv' # change
+LOAD=False
+# LOAD_GRAPH= '/home/poojaparameswaran/Documents/SoderlingLab/SpatialProteomics/rdata/graph_kinsub10415.pkl' 
 # Optimization methods:
 optimization_method = recursive_method = 'Surprise'
 
@@ -44,12 +44,13 @@ output_name = genename
 rmin = 1 # Min resolution for multi-resolution methods.
 rmax = 1 # Max resolution for multi-resolution methods.
 nsteps = 1 # Number of steps to take between rmin and rmax.
-max_size = 500 # Maximum allowable size of a module.
+max_size = 100 # Maximum allowable size of a module.
 
 ## Optimization parameters
 # Not the number of recursive iterations, but the number
 # of optimization iterations.
 n_iterations = -1
+
 
 ## Output
 # Saved in root/rdata/
@@ -87,14 +88,14 @@ import pandas as pd
 # project Directories:
 rdatdir = os.path.join(root,"rdata")
 funcdir = os.path.join(root,"Py")
-
+np.random.seed(1)
 
 ## ---- Functions
 def graph_from_adjm(adjm, weighted=True,signed=True):
     if not signed: adjm = abs(adjm) # why would we sign it?
     network = []
     if weighted:
-        for i in range(adjm.shape[0]):
+        for i in tqdm(range(adjm.shape[0])):
             for j in range(i):
                 p = adjm.index[i]
                 q = adjm.index[j]
@@ -135,9 +136,9 @@ methods = {
             'multi_resolution' : False },
         # Surprise
         "Surprise": {'partition_type' : 'SurpriseVertexPartition',
-            'weights' : True, 'signed' : False,
+            'weights' : True, 'signed' : False, ## initially false.
             'resolution_parameter' : None, 'n_iterations' : n_iterations,
-            'multi_resolution' : False },
+            'multi_resolution' : False, 'seed':1},
         # RBConfiguration
         "RBConfiguration": {'partition_type' : 'RBConfigurationVertexPartition',
             'weights' : True, 'signed' : False,
@@ -362,6 +363,6 @@ for i in range(len(profile)):
 #EOL
 
 # save the data as csv
-myfile = os.path.join(rdatdir, output_name + "_partition.csv")
+myfile = os.path.join(rdatdir, output_name + "_ne_adjm_partition.csv")
 df.to_csv(myfile)
 print("saved: {}".format(myfile), file=stderr)
