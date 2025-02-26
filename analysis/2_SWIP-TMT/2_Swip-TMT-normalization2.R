@@ -24,9 +24,6 @@ if (!requireNamespace("UniProt.ws", quietly = TRUE)) {
 if (!requireNamespace("org.Hs.eg.db", quietly = TRUE)) {
   BiocManager::install("org.Hs.eg.db")
 }
-if (!requireNamespace("org.Mm.eg.db", quietly = TRUE)) {
-  BiocManager::install("org.Mm.eg.db")
-}
 if (!requireNamespace("data.table", quietly = TRUE)) {
   install.packages("data.table")
 }
@@ -38,7 +35,6 @@ if (!requireNamespace("dplyr", quietly = TRUE)) {
 library(UniProt.ws)
 library(AnnotationDbi)
 library(org.Hs.eg.db)
-library(org.Mm.eg.db)
 library(data.table)
 library(dplyr)
 
@@ -46,7 +42,7 @@ library(dplyr)
 root <- "~/Documents/SoderlingLab/SpatialProteomics"
 
 # Input data file
-input_data <- "Transformed_LOPIT_SNCA_young.csv"
+input_data <- "Transformed_LOPIT_LRRK2_young.csv"
 
 # Project directories
 datadir <- file.path(root, "data")
@@ -70,14 +66,14 @@ message("\nCreating gene identifier map.")
 # Remove unwanted proteins
 ig_prots <- c("P01631","P01646","P01665","P01680","P01746","P01750","P01786","P01864","P01878","P03975","P06330","P03987")
 peptides <- peptides %>% filter(!Protein %in% ig_prots)
-peptides <- peptides[!grepl("Keratin", peptides$Function)]
+peptides <- peptides[!grepl("Keratin", peptides$Function), ]
 
 # Collect all Uniprot IDs
 uniprot <- sub(";.*$|__.*$", "", peptides$Protein)
 uniprot <- unique(uniprot)
 
 # Map Uniprot IDs to Entrez using UniProt.ws
-up <- UniProt.ws(taxId=10090)
+up <- UniProt.ws(taxId=9606)
 entrezd <- AnnotationDbi::select(up, keys=uniprot, columns=c("xref_geneid"), keytype="UniProtKB")
 entrezd$GeneID <- gsub("[;\"]", "", entrezd$GeneID)
 entrezd$GeneID  <- as.integer(entrezd$GeneID)
@@ -106,45 +102,29 @@ mapped_by_hand <- c(Q6A1A2 = 5170, A0A0J9YX94 = 105373377, A0A3B3IU46 = 353267, 
 entrez[names(mapped_by_hand)] <- mapped_by_hand
 
 message("Fixed some! Now this # are still missing: ", paste(sum(is.na(entrez)), collapse = ", "))
-# mouse org.Mm.eg.db, human org.Hs.eg.db
-# Map Entrez IDs to gene symbols
-gene_symbols <- mapIds(org.Mm.eg.db, keys=as.character(entrez), column="SYMBOL", keytype="ENTREZID", multiVals="first")
 
-# gene_symbols_uniprot <- mapIds(
-#   org.Mm.eg.db, 
-#   keys=as.character(names(entrez)), 
-#   column="SYMBOL", 
-#   keytype="UNIPROT", 
-#   multiVals="first"
-# )
+# Map Entrez IDs to gene symbols
+gene_symbols <- mapIds(org.Hs.eg.db, keys=as.character(entrez), column="SYMBOL", keytype="ENTREZID", multiVals="first")
 
 # Create gene identifier mapping data.table
-last_entrez_map <- mapIds(org.Mm.eg.db, keys=names(entrez[is.na(entrez)]), column="ENTREZID", keytype="UNIPROT", multiVals="first")
-entrez[is.na(entrez)] <- last_entrez_map[is.na(entrez[names(last_entrez_map)])]
-
 gene_map <- data.table(uniprot = names(entrez), entrez = entrez, symbol = gene_symbols)
 gene_map$id <- paste(gene_map$symbol, gene_map$uniprot, sep="|")
-check <- sum(is.na(entrez)) == 0
-message("Missing entrez", sum(is.na(entrez)))
-# if (!check) { stop("Unable to map all UniprotIDs to Entrez.") }
 
 # Preprocess peptide data
 peptides <- peptides %>%
   mutate(Genotype = Genotype) %>%
-  # mutate(Gene = Gene) %>%
-  mutate(Mixture = Mixture) %>%
+#   mutate(Gene = Gene) %>%
   mutate(Function = Function) %>%
   mutate(Protein = Protein) %>%
-  mutate(Identity = Identity) %>%
+  mutate(Mixture = Mixture) %>%
   mutate(BioFraction = BioFraction) %>%
   mutate(Intensity = Intensity) %>%
   mutate(Abundance = Abundance) %>%
   mutate(Condition = interaction(Genotype, BioFraction)) %>%
   mutate(Relative_Intensity = Relative_Intensity) %>%
-  dplyr::select(Protein, Identity, Genotype, BioFraction, Mixture, Condition, Intensity, Abundance, Relative_Intensity) %>% # removed Genotype, Gene, BioFraction
+  dplyr::select(Protein, Mixture, Genotype, BioFraction, Condition, Intensity, Abundance, Relative_Intensity) %>%
   group_by(Protein)
 
-paste(head(peptides))
 # Save key results
 gene_name <- sub("^[^_]*_[^_]+_([^_]+).*$", "\\1", input_data)
 
@@ -155,4 +135,3 @@ message("saved: ", myfile)
 myfile <- file.path(datadir, paste0(gene_name, "_gene_map.rda"))
 save(gene_map, file=myfile, version=2)
 message("saved: ", myfile)
-

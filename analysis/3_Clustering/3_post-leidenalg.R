@@ -8,7 +8,7 @@
 root <- "~/Documents/SoderlingLab/SpatialProteomics"
 
 ## input in root/rdata
-input_part <- "KinSub10415_partition.csv" # change
+input_part <- "SNCA_ne_adjm_partition.csv" #nge
 
 ## output is [input_part].rda
 output_part <- paste0(tools::file_path_sans_ext(input_part),".rda")
@@ -47,11 +47,11 @@ message("Total number of modules: ", length(unique(part))-1)
 ## ---- save as rda
 
 # save partition
-partition <- data.frame(Module = part)
-colnames(partition)[colnames(partition) == "x"] <- "Module"
+# partition <- data.frame(Module = part)
+# colnames(partition)[colnames(partition) == "x"] <- "Module"
 
-partition <- arrange(partition, Module)
-
+# partition <- arrange(partition, Module)
+partition <- part
 
 myfile <- file.path(root,"data", output_part)
 print(output_part)
@@ -61,3 +61,4 @@ message("saved: ", myfile)
 myfile <- file.path(root, "data", output_csv)
 write.csv(partition, file = myfile, row.names = TRUE) # row.names = FALSE is often desirable to prevent row names being saved as an extra column
 message("saved: ", myfile)
+

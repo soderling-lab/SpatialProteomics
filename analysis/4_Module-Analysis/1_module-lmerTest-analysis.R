@@ -15,11 +15,11 @@ root <- "~/Documents/SoderlingLab/SpatialProteomics"
 
 devtools::load_all(root, quiet=TRUE)
 
-gene_name = "LRRK2"
+gene_name = "Vps35"
 # load the data
-data("LRRK2_tmt") # change to your gene 
-data("LRRK2_gene_map")# change to your gene 
-data("LRRK2_partition") # change it to your gene 
+data(Vps35_tmt) # change to your gene 
+data(Vps35_gene_map)# change to your gene 
+data(Vps35_ne_adjm_partition) # change it to your gene 
 
 # imports
 suppressPackageStartupMessages({
@@ -38,7 +38,6 @@ suppressPackageStartupMessages({
 
 # fit mixed-model to log2 relative (scaled to sum) Intensity
 # 1 indicates only random intercept is being evaluated with "Protein"
-# log2(rel_intensity) is analogous to abundance
 # Condition is independent variable.
 fx <-  log2(Rel_Intensity) ~ 0 + Condition + (1|Protein)
 
@@ -52,9 +51,9 @@ fitModule <- function(prots, tidy_prot, fx) {
   lmer_args[["control"]] <- lme4::lmerControl(check.conv.singular="ignore")
   fm <- do.call(lmerTest::lmer, lmer_args)
   # assess overall contrast and collect results
-  LT <- tidyProt::getContrast(fm,"Transgenic","WildType") # which column to look at
+  LT <- tidyProt::getContrast(fm,"tg","wt") # which column to look at
   result <- lmerTestContrast(fm,LT) %>%
-	  mutate(Contrast='Transgenic-Wildtype') %>% unique() %>%
+	  mutate(Contrast='tg-wt') %>% unique() %>%
 	  mutate('nProts'=length(prots))
   return(result)
 } #EOF
@@ -62,7 +61,7 @@ fitModule <- function(prots, tidy_prot, fx) {
 
 ## ---- main
 
-modules <- split(names(partition),partition)[-1]
+modules <- split(names(partition), partition) #  partition at end will also work., if not names, rownames
 names(modules) <- paste0("M",names(modules))
 
 message("k Modules: ", length(modules))
@@ -79,38 +78,41 @@ tidy_prot <- peptides %>%
 # USER: you may do the following, but you must change the analysis to your gene,
 # Change wherever you see 'Wash'
 
-# washc_prots <- gene_map$uniprot[grepl("Wash*", gene_map$symbol)]
+# washc_prots <- gene_map$uniprot[grepl("Washc*", gene_map$symbol)] # "Wash*"
 # # get only washc prots in tidy_prot
 # prots = washc_prots[washc_prots %in% tidy_prot$Protein]
-# print(prots)
-# # prots only looks at washc4, washc2, washc5, washc1
-# # passing in all data into prots(4 wash complexes) and then fitting with lmer
-# 
+# prots only looks at washc4, washc2, washc5, washc1
+# passing in all data into prots(4 wash complexes) and then fitting with lmer
+
 # CHECK <- tidy_prot %>%  subset(Protein %in% prots)
-# 
+
 # fm = lmerTest::lmer(fx, tidy_prot)
-# print(fm)
-# 
-# 
-# # why is this being done for just WASH complexes
-# LT = getContrast(fm,"Transgenic","WildType")
-# 
-# lmerTestContrast(fm,LT) %>%
-# 	mutate(Contrast = 'Mutant-Control') %>%
-# 	mutate(Pvalue = formatC(Pvalue)) %>%
-# 	mutate(nProts = tidy_prot) %>%
-# 	unique() %>% knitr::kable()
+fm = lmerTest::lmer(fx, tidy_prot)
+
+print(fm)
+
+
+# why is this being done for just WASH complexes
+LT = getContrast(fm,"tg","wt")
+
+lmerTestContrast(fm,LT) %>%
+	mutate(Contrast = 'tg-wt') %>%
+	mutate(Pvalue = formatC(Pvalue)) %>%
+	mutate(nProts = nrow(tidy_prot)) %>%
+	unique() %>% knitr::kable()
 
 
 # register parallel backend
 doParallel::registerDoParallel(parallel::detectCores() -1)
 
 # loop to do module-level analysis
-results_list <- foreach(module = names(modules))  %dopar% {
+results_list <- foreach(module = names(modules))  %do% { #dopar
   fitModule(modules[[module]], tidy_prot, fx)
 } # EOL
+
 names(results_list) <- names(modules)
 
+message("running: ")
 
 ## collect results
 results_df <- bind_rows(results_list, .id="Module") %>%
@@ -144,14 +146,16 @@ message("n Sig modules: ", sum(results_df$candidate))
 # data.frame describing network partition
 idx <- match(names(partition),gene_map$uniprot)
 df <-  data.table(UniProt = names(partition),
-	 Entrez = gene_map$entrez[idx],
-	 Symbol = gene_map$symbol[idx],
-	 Membership = partition)
+    Entrez = gene_map$entrez[idx],
+    Symbol = gene_map$symbol[idx],
+    Membership = partition)
 
+df[, Symbol := as.character(Symbol)]
 # results list:
 results_list <- list()
 results_list[["Partition"]] <- df %>% arrange(Membership)
 results_list[["Module Results"]] <- results_df
+
 
 # save in root/tables
 myfile <- file.path(root,"tables", paste0(gene_name, "-TMT-Module-Results.xlsx")) ## This is ranked by log2(Relative_Intensity)

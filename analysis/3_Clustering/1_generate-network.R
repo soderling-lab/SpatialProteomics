@@ -27,8 +27,8 @@ setwd("~/Documents/SoderlingLab/SpatialProteomics/analysis/3_Clustering")
 
 ## Change to your gene name
 gene_name <- "" # change
-load(file.path(data_dir, "KinSub10415_gene_map.rda"))
-load(file.path(data_dir, "KinSub10415_tmt.rda"))                                                                                                                                             
+load(file.path(data_dir, "SNCA_tmt.rda"))
+load(file.path(data_dir, "SNCA_gene_map.rda"))                                                                                                                                             
 ## ---- Output:
 
 # * adjm.rda
@@ -49,16 +49,15 @@ devtools::load_all(root, quiet=TRUE)
 
 # load data in root/data
 
-
 ################################################################
 ### If
 
-input_data = "10415/Transformed_KinSub10415_unbiased_normalized_041124_AnnotatedHumanKinome.csv"
+input_data = "Transformed_LOPIT_SNCA_young.csv"
 downdir = "../../transformeddata"  # Step back twice and then go to transformeddata
 myfile <- file.path(downdir, input_data) # all peptide information
 novel <- data.table::fread(myfile)
 
-gene_name <- sub("^[^_]*_([^_]+)_.*$", "\\1", input_data)
+gene_name <- sub("^[^_]*_[^_]+_([^_]+).*$", "\\1", input_data)
 
 ### Where 
 # myfile <- file.path("../../data", paste0(gene_name, "_tmt.rda"))
@@ -86,33 +85,36 @@ message("Generating covariation network...")
 # no median summarization of bioreplicates
 # network is constructed from log2(Intensity) ~ Abundance
 ## adjust for duplicate accessions&fractions
-peptides <- peptides %>%
-  group_by(Protein, Mixture, Genotype, BioFraction, Condition) %>%
-  summarize(
-    Intensity = sum(Intensity, na.rm = TRUE), ## MEAN?
-    Abundance = sum(Abundance, na.rm = TRUE),
-    Relative_Intensity = sum(Relative_Intensity, na.rm = TRUE), # sum checked, and correct.
-    .groups = 'drop'
-  )
-  
-dm <- peptides %>% ## need to adjust for sum
+
+## Pushpa data?
+# peptides <- peptides %>%
+#   group_by(Protein, Mixture, Genotype, BioFraction, Condition) %>%  summarize(
+#     Intensity = sum(Intensity, na.rm = TRUE), ## MEAN?
+#     Abundance = sum(Abundance, na.rm = TRUE),
+#     Relative_Intensity = sum(Relative_Intensity, na.rm = TRUE), # sum checked, and correct.
+#     .groups = 'drop'
+#   )
+
+
+dm <- peptides %>%
+	# reshape2::dcast(Protein ~ Mixture + Condition, value.var = "Abundance") %>%
   reshape2::dcast(Protein ~ Mixture + Genotype + BioFraction, value.var = "Abundance") %>%
-  as.data.table() %>%
-  as.matrix(rownames="Protein")
+  	as.data.table() %>%
+	as.matrix(rownames="Protein")
 
 # there are a small number proteins with some missing vals
 # e.g. Q9QUN7 = low abundance only quantified in 4/7 fractions
 # remove these proteins
+# idx <- apply(dm,1,function(x) any(is.na(x)))
 idx <- apply(dm,1,function(x) any(is.na(x)) | any(x <0) ) ## also removing negative abundances ....
 warning(sum(idx)," proteins with any missing or negative values are removed.")
-filt_dm <- dm[!idx,] # picks idx that are Not True! not true= not missing
-print(!any(filt_dm<0))
-stopifnot(!any(filt_dm<0)) # checks if any values are less than 0
+filt_dm <- dm[!idx,]
 
+stopifnot(!any(filt_dm<0))
 
-## calculate correlation matrix
+## calculate coorrelation matrix
 adjm <- cor(t(filt_dm), method="pearson",use="complete.obs")
-
+# adjm[is.na(adjm)] <- 0
 # save to file
 currentdir = getwd()
 print(currentdir)
@@ -137,6 +139,7 @@ Sys.time()
 ## ---- save networks as csv in rdata
 # coerce to data.table and save adjm.csv
 adjm_dt <- as.data.table(adjm,keep.rownames="Protein")
+
 myfile <- file.path(root, folder, paste0(gene_name, "_adjm.csv"))
 print(paste("Writing adjm_dt to", myfile))
 data.table::fwrite(adjm_dt, myfile)
@@ -170,3 +173,4 @@ myfile <- file.path(root, folder, paste0(gene_name,"_ne_adjm.rda"))
 save(ne_adjm, file=myfile,version=2)
 message("saved: ", myfile)
 print(paste("Writing ne_adjm vs2 to", myfile))
+
